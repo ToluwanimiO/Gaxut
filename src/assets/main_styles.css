@@ -361,6 +361,7 @@ section
 {
 	display: inline-block;
 	margin-right: 30px;
+	color: #000;
 }
 
 .main_nav_item:last-child
@@ -388,7 +389,10 @@ section
 .main_nav_item a:hover{
 	color:#ffb606;
 }
-
+.main_nav_item:hover
+{
+	color: #ffb606;
+}
 #users_details{
     background: #00185F;
     width: 50vw;
@@ -2289,7 +2293,7 @@ a.view-all:hover {
 	margin-bottom: 11px;
 	
 }
-.footer_list_item a
+.footer_list_item a, .footer_list_item
 {
 	font-size: 14px;
 	-webkit-transition: all 200ms ease;
@@ -2299,7 +2303,7 @@ a.view-all:hover {
 	transition: all 200ms ease;
 	color: #000000;
 }
-.footer_list_item a:hover
+.footer_list_item a:hover,.footer_list_item:hover
 {
 	color: #ffb606;
 }

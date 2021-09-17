@@ -1,0 +1,246 @@
+/*this is the code for the jobs page*/
+
+#category_cate {
+    padding: 4rem;
+    margin-top: 100px;
+    
+}
+#category_cate .card{
+    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 20px 0 rgba(0, 0, 0, 0.05);
+}
+#category_cate .card-title{
+    color: #000000;
+    font-size: 20px;
+}
+#category_cate .card-body{
+    color: #000000;
+}
+#category_cate .card-text{
+    color: #000000;
+}
+#category_cate .price{
+    font-size: 18px;
+}
+#subcategory-nav {
+    display: inline-flex;
+    width: inherit;
+    flex-wrap: nowrap;
+    overflow: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+    -ms-overflow-style: none;  /* IE and Edge */
+    margin: auto;
+    scroll-behavior: smooth;
+}
+#subcategory-nav ::-webkit-scrollbar {
+    display: none;
+}
+#subcategory-nav .nav-link.all {
+    color: #001F7D;
+    font-weight: 550;
+    font-size: 24px;
+    border-right: 1px solid lightgray;
+}
+#subcategory-nav .nav-item a {
+    color: #1E1E1E;
+    padding: auto;
+    width: fit-content;
+    flex-wrap: nowrap;
+}
+#subcategory-nav .nav-item a:active{
+    font-weight: 550;
+}
+.container-fluid > .container h1 {
+    font-size: 44px;
+    font-weight: 550;
+    letter-spacing: 1px;
+    line-height: 1.5;
+    color: #001F7D;
+    margin-bottom: 1rem;
+}
+.filter-container .btn {
+    margin-right: 1rem;
+    padding: 0.25rem 1rem;
+}
+.filter-container .btn:hover{
+    cursor: pointer;
+}
+#most-popular {
+    background-color: #f2cb0550;
+}
+#category_cate .dropdown-menu a:hover{
+    background: #f2cb0550;
+}
+.card {
+    border-radius: 1.5rem;
+    flex-direction: row;
+    margin: 1.5rem auto;
+}
+.card img {
+    width: 40%;
+    max-height: 15rem;
+    border-radius: 1rem;
+    margin: auto;
+}
+.category-pill-square {
+    color: #1E1E1E;
+    text-decoration: none;
+    white-space: nowrap;
+}
+.category-pill-square:hover {
+    color: #1E1E1E;
+}
+.card-title {
+    font-weight: bold;
+}
+.card-text, .card-body span {
+    font-size: 14px;
+}
+.posted-by {
+    color: grey;
+    font-size: 14px;
+}
+.card .far, .card .fas {
+    color: #F2CB05;
+}
+.price {
+    font-weight: bold;
+    color: #F2CB05;
+}
+#search-nav .fas {
+    color: #F2CB05;
+}
+#search-nav .nav-link{
+    color: #1E1E1E;
+}
+#search-nav .nav-link.active{
+    color: #F2CB05;
+}
+#filterColumn {
+    display: none;
+    transition: all 1s ease-in;
+    animation: fadeDown 1s ease-in;
+}
+.reset {
+    color: red;
+    text-decoration: none;
+    font-size: large;
+}
+.reset:hover {
+    color: red;
+}
+.fom-check label {
+    color: grey;
+}
+.see-more {
+    color: #001F7D;
+    text-decoration: none;
+}
+#applyFilter {
+    background-color: #001F7D;
+    color: white;
+}
+
+@keyframes fadeDown {
+    0% {
+        height: 20%;
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+        height: 100%;
+    }
+}
+
+@keyframes fadeUp {
+    0% {
+        height: 100%;
+        opacity: 1;
+    }
+    100% {        
+        height: 20%;
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes fadeUp{
+    0% {
+        height: 100%;
+        opacity: 1;
+    }
+    100% {        
+        height: 20%;
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes fadeDown {
+    0% {
+        height: 20%;
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+        height: 100%;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    #category_cate {
+        padding: 2rem;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    #category_cate {
+        padding: 1.5rem;
+    }
+    .card .d-flex {
+        flex-wrap: wrap;
+    }
+    .card .price {
+        padding:0 1rem 0.5rem;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    #category_cate {
+        padding: 0.5rem;
+    }
+    .container-fluid > .container h1 {
+        font-size: 32px;
+    }       
+    #subcategory-nav {
+        display: none;
+    }
+    .card {
+        border-radius: 1rem;
+        padding: 0.25rem;
+        margin: 1rem auto;
+    }
+    .card img {
+        border-radius: 0.75rem;
+    } 
+    .card-body {
+        padding: 0.25rem;
+    }
+    .card-title {
+        font-size: 16px;
+        text-overflow: ellipsis;
+    }
+    .card-text {
+        display: none;  
+    }
+    .card-body span {
+        font-size: 13px;
+    }
+    .posted-by {
+        color: grey;
+        font-size: 13px;
+        margin-bottom: 0.5rem;
+    }
+    .card .price {
+        padding: 0rem;
+        font-size: 18px;
+    }
+}
