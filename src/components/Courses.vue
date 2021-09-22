@@ -147,8 +147,8 @@
                 </div>
                 <div class="col-md-12" id="mainColumn">    
                     <div class="container-fluid mt-3 p-0">
-                        <div class="card shadow border-0 px-2 py-1">
-                            <img class="float-right" src="images/social media.jpg" alt="">
+                        <div class="card-category card shadow border-0 px-2 py-1">
+                            <img class="float-right" src="../assets/images/social media.jpg" alt="">
                             <div class="d-flex  justify-content-between px-md-3 px-2">
                                 <div class="card-body">
                                     <a class="category-pill-square rounded px-1 px-md-5 py-1" style="background: #FCF8C1; color: #000000;">Web Programming</a>
@@ -164,8 +164,8 @@
                                 <h4 class="price my-auto">$50.00</h4>
                             </div>
                         </div>
-                        <div class="card shadow border-0 px-2 py-1">
-                            <img class="float-right" src="images/social media.jpg" alt="">
+                        <div class="card-category card shadow border-0 px-2 py-1">
+                            <img class="float-right" src="../assets/images/social media.jpg" alt="">
                             <div class="d-flex  justify-content-between px-md-3 px-2">
                                 <div class="card-body">
                                     <a class="category-pill-square rounded px-1 px-md-5 py-1" style="background: #BFC7DF; color: #000000;">IOS Programming</a>
@@ -181,8 +181,8 @@
                                 <h4 class="price my-auto">$50.00</h4>
                             </div>
                         </div>
-                        <div class="card shadow border-0 px-2 py-1">
-                            <img class="float-right" src="images/social media.jpg" alt="">
+                        <div class="card-category card shadow border-0 px-2 py-1">
+                            <img class="float-right" src="../assets/images/social media.jpg" alt="">
                             <div class="d-flex  justify-content-between px-md-3 px-2">
                                 <div class="card-body">
                                     <a class="category-pill-square rounded px-1 px-md-5 py-1" style="background-color: #f1f5ec;">Web Programming</a>
@@ -198,8 +198,8 @@
                                 <h4 class="price my-auto">$50.00</h4>
                             </div>
                         </div>
-                        <div class="card shadow border-0 px-2 py-1">
-                            <img class="float-right" src="images/social media.jpg" alt="">
+                        <div class="card-category card shadow border-0 px-2 py-1">
+                            <img class="float-right" src="../assets/images/social media.jpg" alt="">
                             <div class="d-flex  justify-content-between px-md-3 px-2">
                                 <div class="card-body">
                                     <a class="category-pill-square rounded px-1 px-md-5 py-1" style="background: #FCF8C1; color: #000000;">IOS Programming</a>
@@ -215,8 +215,8 @@
                                 <h4 class="price my-auto">$50.00</h4>
                             </div>
                         </div>
-                        <div class="card shadow border-0 px-2 py-1">
-                            <img class="float-right" src="images/social media.jpg" alt="">
+                        <div class="card-category card shadow border-0 px-2 py-1">
+                            <img class="float-right" src="../assets/images/social media.jpg" alt="">
                             <div class="d-flex  justify-content-between px-md-3 px-2">
                                 <div class="card-body">
                                     <a class="category-pill-square rounded px-1 px-md-5 py-1" style="background: #BFC7DF; color: #000000;">Web Programming</a>
@@ -232,8 +232,8 @@
                                 <h4 class="price my-auto">$50.00</h4>
                             </div>
                         </div>
-                        <div class="card shadow border-0 px-2 py-1">
-                            <img class="float-right" src="images/social media.jpg" alt="">
+                        <div class="card-category card shadow border-0 px-2 py-1">
+                            <img class="float-right" src="../assets/images/social media.jpg" alt="">
                             <div class="d-flex  justify-content-between px-md-3 px-2">
                                 <div class="card-body">
                                     <a class="category-pill-square rounded px-1 px-md-5 py-1" style="background-color: #f1f5ec;">IOS Programming</a>
@@ -277,21 +277,21 @@
             </div>
         </div>
     </section>
-    <section id="cta" class="mt-3" >
-        <div class="container" style="background: url(images/Group\ 17.png);  background-position: center;">
-            <div class="row" id="cta_details">
-                <div class="col-lg-6 ">
-                    <div>
-                        <h5 class="text-center text-light text-lg-left">Ready to Join <br> Gaxut??</h5>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <a href="#"  class="btn start-tutor" value="">Register Now</a>
-            </div>
-            </div>
-        </div>
-        
-    </section>
+    <section id="cta" class="mt-3">
+		<div class="container background-register">
+			<div class="row" id="cta_details">
+				<div class="col-lg-6 ">
+					<div>
+						<h5 class="text-center text-light text-lg-left">Ready to Join <br> Gaxut??</h5>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<a href="#"  class="btn start-tutor" value="">Register Now</a>
+			</div>
+			</div>
+		</div>
+		
+	</section>
     </div>
 </template>
 
@@ -315,5 +315,9 @@ export default {
 </script>
 
 <style>
-
+    .background-register
+    {
+    background: url(../assets/images/Group\ 17.png) !important;
+    background-position: center !important;
+    }
 </style>

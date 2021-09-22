@@ -534,10 +534,10 @@ section
 {
 	margin-bottom: 9px;
 }
-.menu_item a
+.menu_item 
 {
 	font-family: 'Poppins', sans-serif;
-	font-size: 20px;
+	font-size: 24px;
 	font-weight: 500;
 	color: #FFFFFF;
 	-webkit-transition: all 200ms ease;
@@ -546,7 +546,7 @@ section
 	-o-transition: all 200ms ease;
 	transition: all 200ms ease;
 }
-.menu_item a:hover
+.menu_item:hover
 {
 	color: #ffb606;
 }

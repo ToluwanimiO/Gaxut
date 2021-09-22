@@ -1,0 +1,164 @@
+/*this is the code for the course-content page*/
+#course-content {
+   margin-top: 140px;
+}
+.info {
+    color: white;
+    background:#001145;
+    justify-content: space-between;   
+    padding: 1rem 4rem;
+}
+.category-pill-round {
+    display: inline-block;
+    margin: 0.25rem auto;
+    text-decoration: none;
+    white-space: nowrap;
+    padding: 0.25rem 0.5rem;
+    border-radius: 1rem;
+}
+.info h1 {
+    line-height: 1.2;
+    font-size: 44px;
+    font-weight: 550;
+    letter-spacing: 1px;
+}
+.info .far, .info .fas {
+    color: #F2CB05;
+}
+.content {
+    width: 100%;
+    margin: auto;
+    padding: 0 3rem 2rem;
+}
+.topics {
+    padding: 3rem 0 1rem;
+    font: 14px;
+}
+.topics h1{
+    line-height: 1.2;
+    font-size: 28px;
+    font-weight: 550;
+    letter-spacing: 1px;
+    color: #001F7D;
+    margin-bottom: 1rem;
+}
+.lesson {
+    text-transform: uppercase;
+    font-weight: bold;
+    margin: 1rem 0;
+    font-size: 18px;
+    color: #000000;
+}
+.topics ul li ul {
+    list-style-image: url("./images/Ellipse\ 8.png");
+}
+.topics ul li ul li {
+    margin: 0.75rem 0.75rem;
+}
+.topics .list-unstyled a {
+    color: #1E1E1E;
+}
+.topics .list-unstyled a h5 {
+    font-size: 16px;
+}
+video {
+    height: 29rem;
+    width: 100%;
+    object-fit: contain;
+    background-color: rgb(40, 45, 50);
+    animation: fadeDown 1.5s linear;
+}
+.prev-next {
+    color: #F2CB05;
+}
+.prev-next:hover {
+    color: #F2CB05;
+    opacity: 0.9;
+}
+@keyframes fadeDown {
+    0% {
+        height: 20%;
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+        height: 100%;
+    }
+}
+@-webkit-keyframes fadeDown {
+    0% {
+        height: 20%;
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+        height: 100%;
+    }
+}
+@media screen and (max-width: 1024px) { 
+    .content {
+        padding: 0 1.5rem 2rem;
+    }
+    video {
+        height: 22rem;
+    }
+}
+@media screen and (max-width: 992px) {              
+    .info {
+        padding: 1rem;
+    }
+    .info h1 {
+        font-size: 40px;
+    }
+    .info .far, .info .fas {
+        color: #F2CB05;
+    }
+    .content {
+        flex-direction: column-reverse;
+        padding: 0 2rem 2rem;
+    }
+    .topics {
+        padding: 2rem 1rem 1rem;
+    }
+    .topics h1 {
+        font-size: 32px;
+    }
+    video {
+        height: 24rem;
+    }
+}
+@media screen and (max-width: 768px) {
+    .info {
+        flex-direction: column;
+    }
+    .info h1 {
+        font-size: 36px;
+    }
+    .content {
+        flex-direction: column-reverse;
+        padding: 0 1.5rem 2rem;
+    }
+    .topics {
+        padding: 2rem 0 1rem;
+    }
+}
+@media screen and (max-width: 576px) {       
+    .info {   
+        padding: 0.75rem;
+    }
+    .info h1 {
+        font-size: 32px;
+    }
+    .category-pill-round {
+        margin: 0.25rem auto;
+    }
+    .content {
+        padding: 0 0 2rem;
+    }
+    video {
+        height: 14rem;
+    }
+    #course-content {
+        margin-top: 70px;
+     }
+}

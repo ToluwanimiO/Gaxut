@@ -1,0 +1,131 @@
+<template>
+    <div class="login-body">
+        <section class="signUp" style="margin-top: 70px;">
+        <div class="container-fluid" >
+            <div class="row p-0 justify-content-center" >
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="contianer-fluid">
+                        <div class="container p-0 border rounded-lg shadow-sm bg-white">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-pills nav-justified" role="pill">
+                                <li class="nav-item">
+                                    <a class="nav-link py-3 rounded-0 active text-dark" data-toggle="pill" href="#login">Log in</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link py-3 rounded-0 text-dark" data-toggle="pill" href="#signup">Sign up</a>
+                                </li>
+                            </ul>
+                        
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div id="login" class="container tab-pane active"><br>
+                                   <div class="container-fluid justify-content-center p-3" >
+                                       <h4 class="text-center font-weight-bold mt-4 mb-2">Log into your account</h4>
+                                       <div class="d-flex justify-content-center mb-2">
+                                           <a class="mr-3" href=""><span class="fab fa-facebook fa-3x"></span></a>
+                                           <a class="mr-3" href=""><span class="fab fa-apple"></span></a>
+                                           <a class="mr-3" href=""><span class="fab fa-google"></span></a>
+                                       </div>
+                                       <p class="text-secondary text-center mb-3">Or connect with your email</p>
+                                       <form class="p-md-3" action="">
+                                            <div class="form-group mb-4">
+                                                <label for="email">Email</label>
+                                                <input type="email" class="form-control rounded-lg" placeholder="Enter email address" id="email" required>
+                                            </div>
+                                            <div class="form-group mb-4">
+                                                <label for="pwd">Password</label>
+                                                <input type="password" class="form-control rounded-lg" placeholder="Enter password" id="pwd" required>
+                                            </div>
+                                            <p class="extra-notes">By clicking log in, you agree to our <span>Terms of Use</span> and <span>Privacy Policy</span></p>
+                                            <button type="submit" class="btn btn-submit mt-2 text-white">LOG IN</button>
+                                       </form>
+                                       <hr class="mt-2 mb-4">
+                                       <router-link to="/reset"><a class="forgotPw">Forgot your password?</a></router-link>
+                                   </div>
+                                </div>
+                                <div id="signup" class="container tab-pane fade"><br>
+                                    <div class="container-fluid justify-content-center">
+                                        <h4 class="text-center font-weight-bold mt-4 mb-2">Create an account</h4>
+                                        <div class="d-flex justify-content-center mb-2">
+                                            <a class="mr-3" href=""><span class="fab fa-facebook fa-3x"></span></a>
+                                            <a class="mr-3" href=""><span class="fab fa-apple"></span></a>
+                                            <a class="mr-3" href=""><span class="fab fa-google"></span></a>
+                                        </div>
+                                        <p class="text-secondary text-center mb-3">Or connect with your email</p>
+                                        <form class="p-md-3" action="">
+                                            <div class="form-group mb-3">
+                                                <label for="fName">First Name</label>
+                                                <input type="text" class="form-control rounded-lg" placeholder="Enter first name" id="fName" required>
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="lName">Last Name</label>
+                                                <input type="text" class="form-control rounded-lg" placeholder="Enter last name or surname" id="lName" required>
+                                            </div>
+                                             <div class="form-group mb-3">
+                                                 <label for="email">Email</label>
+                                                 <input type="email" class="form-control rounded-lg" placeholder="Enter email address" id="email" required>
+                                             </div>
+                                             <div class="form-group mb-3">
+                                                 <label for="pwd1">Password</label>
+                                                 <input type="password" class="form-control rounded-lg" placeholder="Enter password" id="pwd1" required>
+                                             </div>
+                                             <div class="form-group mb-3">
+                                                <label for="pwd2">Confirm Password</label>
+                                                <input type="password" class="form-control rounded-lg" placeholder="Re-enter password" id="pwd2" required>
+                                            </div>
+                                             <p class="extra-notes">By clicking Sign up, you agree to our <span>Terms of Use</span> and <span>Privacy Policy</span> </p>
+                                             <button type="submit" class="btn btn-submit">SIGN UP</button>
+                                        </form>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </section>
+    </div>
+</template>
+
+<script>
+// import HelloWorld from './components/HelloWorld.vue'
+
+export default {
+  name: 'Login',
+  components: {
+    // HelloWorld
+  },
+  data(){
+    return{
+
+    }
+  },
+  methods: {
+    
+  },
+}
+</script>
+
+<style>
+.login-body {
+    background: url("../assets/images/bg_login_pc.png");
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: fill;
+}
+@media screen and (max-width: 1024px) {
+    .login-body {
+        background-size: contain;
+        min-height: 100vh;
+    }
+}
+@media screen and (max-width: 768px) {
+    .login-body {
+        background: url("../assets/images/bg_login_mobile.png");
+        background-repeat: no-repeat;
+        background-position: right;
+        background-size: contain;
+    }
+}
+</style>

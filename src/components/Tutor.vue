@@ -97,7 +97,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="beatutor.html"  class="btn start-tutor">Become a Tutor Today</a>
+                <router-link to="/beatutor"  class="btn start-tutor">Become a Tutor Today</router-link>
             </section>
     </div>
 </template>

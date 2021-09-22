@@ -1,0 +1,105 @@
+/* body {
+    background: url("./images/bg_login_pc.png");
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: fill;
+} */
+#loginSignup,.signUp {
+    padding: 5rem 0;
+}
+#loginSignup h4, .reg,.signUp h4{
+    color: #000000;
+    font-size: 25px;
+}
+#loginSignup .nav-link,.signUp {
+    color: #1E1E1E;
+}
+#loginSignup,.signUp .nav-link.active {
+    background-color: #f2cb0550;
+}
+#loginSignup {
+    padding: 12.5px !important;
+    font-size: 25px !important;
+    width: 50px !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    border-radius: 50% !important;
+}
+#loginSignup .fa-apple:hover, #loginSignup .fa-google:hover {
+    opacity: 0.8 !important;
+}
+.fa-apple {
+    color: white;
+    background: #1E1E1E;
+    padding: 12.5px !important;
+    font-size: 25px !important;
+    width: 50px !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    border-radius: 50% !important;
+}
+.fa-google {
+    background: #dd4b39 !important;
+    color: white !important;
+    padding: 12.5px !important;
+    font-size: 25px !important;
+    width: 50px !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    border-radius: 50% !important;
+}
+label {
+    font-weight: bold;
+    font-size: 14px;
+}
+#loginSignup input,.signUp input {
+    font-size: 14px;
+}
+.extra-notes {
+    margin: 1.5rem auto 2rem;
+    font-size: 14px;
+    color: gray;
+}
+.extra-notes span {
+    color: #1E1E1E;
+    font-weight: bold;
+}
+.btn-submit {
+    display: block;
+    background-color: #f2cb05;
+    width: 80%;
+    color: white;
+    margin: auto;
+    margin-bottom: 2rem;
+}
+.forgotPw {
+    display: block;
+    color: #001F7D;
+    font-weight: bold;
+    width: fit-content;
+    margin: auto;
+}
+.forgotPw:hover:active {
+    opacity: 0.8;
+    color: #001F7D;
+}
+
+/* @media screen and (max-width: 1024px) {
+    body {
+        background-size: contain;
+        min-height: 100vh;
+    }
+}
+@media screen and (max-width: 768px) {
+    body {
+        background: url("./images/bg_login_mobile.png");
+        background-repeat: no-repeat;
+        background-position: right;
+        background-size: contain;
+    }
+} */
+@media screen and (max-width: 576px) {   
+    .btn-submit {
+        width: 90%;
+    }
+}

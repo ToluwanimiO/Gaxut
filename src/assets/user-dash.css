@@ -1,0 +1,126 @@
+#user-dashboard{
+	margin-top: 100px;
+    padding: 4rem;
+}
+#user-dashboard .container h5{
+        font-size: 30px;
+        font-weight: 700;
+        color: #001F7D;
+}
+#user-dashboard .container .row .nav-pills a{
+   color: #000000;
+   margin-bottom: 10px;
+   font-size: 16px;
+}
+#user-dashboard .container .row{
+    margin-top: 1rem;
+}
+#user-dashboard .container .row .col-lg-3.bord{
+    border-right: 2px solid #F2CB05;
+}
+.container .row .nav-pills .nav-link.active{
+    background-color: #F2FBD8;
+    border-radius:  10px;
+}
+.container .row .nav-pills .nav-link img{
+    padding: 10px; 
+}
+#myearning .card{
+    width: 175px;
+    height: 156px;
+    border-radius: 10px;
+}
+label {
+    font-weight: 600;
+    color: #000000;
+}
+#myearning p{
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    line-height: 30px;
+}
+#jobs-adverts .card .card-body .card-title{
+    font-family: 'Poppins', sans-serif;
+    color: #000000;
+    font-size: 25px;
+}
+#jobs-adverts .card .card-body .card-text{
+    line-height: 20px;
+}
+#jobs-adverts .card .card-body span{
+    color: #000000;
+}
+#jobs-adverts .card .category-pill-square{
+    color: #000000;
+}
+#jobs-adverts .card .card-body .price{
+    font-size: 20px;
+}
+#jobs-adverts .remove-btn{
+    padding: 5px 40px 5px 40px;
+}
+#uploaded-courses .card {
+    padding: 0.5rem;
+    height: auto;
+    margin-bottom: 2rem;
+}
+#uploaded-courses .card-img-top {
+    height: 12rem;
+    object-fit: cover;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+	margin-bottom: 0.5rem;
+}
+#uploaded-courses .card-title {
+    font-weight: 600;
+	margin-top: 0.5rem;
+}
+#uploaded-courses .card-body {
+    padding: 1rem;
+}
+#uploaded-courses .card .far, .card .fas {
+    color: #F2CB05;
+}
+#uploaded-courses .card .price {
+    color: #F2CB05;
+    font-weight: 550;
+    font-size: 1.2rem;
+}
+#edit-account .fas {
+    color:white;
+    font-size: 2rem;
+    position:absolute;
+    top: 10%;
+    left: 47%;
+}
+
+@media screen and (max-width: 1024px) {
+    #uploaded-courses .card-body {
+        padding: 0.75rem;
+    }
+    #edit-account .fas {
+        top: 8%;
+        left: 60%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    #user-dashboard{
+        margin-top: 50px;
+        padding: 1rem;
+    }
+    #uploaded-courses .card-img-top {
+        height: 10rem;
+        margin-bottom: 0.25rem;
+    }
+    #uploaded-courses .card-title {
+        font-size: 26px !important;
+        margin-top: 0.25rem;
+    }
+    #edit-account .fas {
+        top: 15%;
+        left: 35%;
+    }
+}
+
