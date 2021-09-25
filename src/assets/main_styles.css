@@ -1624,7 +1624,11 @@ input:last-of-type
     border: none;
     outline: none;
 }
-
+@media screen and (max-width: 307px) {
+	#search{
+		width: 100% !important;
+	}
+  }
 .hero-search .submit {
     background-color: #F2CB05;
     color: white;
