@@ -1624,11 +1624,6 @@ input:last-of-type
     border: none;
     outline: none;
 }
-@media screen and (max-width: 307px) {
-	#search{
-		width: 100% !important;
-	}
-  }
 .hero-search .submit {
     background-color: #F2CB05;
     color: white;
@@ -1998,7 +1993,13 @@ a.view-all:hover {
     }
 
 }
-
+@media screen and (max-width: 400px)
+{
+	.hero-search .submit
+	{
+		display: none;
+	}
+}
 @media screen and (max-width: 767px) {
     
     .hero {
@@ -2040,7 +2041,6 @@ a.view-all:hover {
     .hero-search select {
         display: none;
     }
-
     .hero-search .fas {
         display: none;
     }

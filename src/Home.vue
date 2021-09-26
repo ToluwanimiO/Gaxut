@@ -15,12 +15,12 @@
 				<div class="hero-search d-flex">
 					<i class="fas fa-search"></i>
 					<input type="search" name="search" id="search" class="hero-input" placeholder="What do you want to learn?">
-					<!-- <select class="select" id="">
+					<select class="select" id="">
 						<option>Categories</option>
 						<option>2</option>
 						<option>3</option>
 						<option>4</option>
-					</select> -->
+					</select>
 					<input class="submit" type="submit" value="Search">
 				</div>
 			</div>
