@@ -1,6 +1,6 @@
 <template>
     <div>
-            <section id="privacy">
+        <section id="privacy">
                 <div class="container">
                     <div class="title">
                         <h5>12 Relevant Skills To Have in Design</h5><br>
@@ -22,10 +22,10 @@
                         <p class="text-left">
                             Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?<br><br>
 
-Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?<br><br>
+                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?<br><br>
 
-Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
-Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora.<br><br>
+                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora.<br><br>
                         </p>
                         <div class="title">
                             <h5 class="mb-3">Share:</h5>
@@ -34,6 +34,55 @@ Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolor
                                 <div class="col-1"><a href=""><i class="fab fa-facebook"></i></a></div>
                                 <div class="col-1"><a href=""><i class="fab fa-linkedin-in"></i></a></div>
                                 <div class="col-1"><a href=""><i class="fab fa-twitter"></i></a></div>
+                            </div>
+                        </div>
+                        <!--comments-->
+                        
+                            <div class="comments pt-5">
+                                <div class="box-comments">
+                                        <span class="note-comments text-regular">2 Comments Found</span>
+                                        <ul class="list-comments">
+                                            <li>
+                                                <span class="user-avatar"><img src="../assets/images/avatar-user1.png" alt=""></span>
+                                                <div class="user-comments">
+                                                    <h4 class="heading-regular"> Albert Carroll</h4>
+                                                    <p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram. Qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram.</p>
+                                                    <a href="#" class="reply">reply</a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <span class="user-avatar"><img src="../assets/images/avatar-user1.png" alt=""></span>
+                                                <div class="user-comments">
+                                                    <h4 class="heading-regular"> Sandra Porter</h4>
+                                                    <p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram. Qui sequitur.</p>
+                                                    <a href="#" class="reply">reply</a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                            </div>
+                            <!--write comments-->
+                        <div class="row">    
+                            <div class="col-md-8 write-comments">
+                                <div class="box-comments">
+                                    <div class="title-write">
+                                        <h4 class="heading-regular">Write Comment</h4>
+                                    </div>
+                                    <form>
+                                        <div class="input-box your-comment">
+                                            <textarea placeholder="Your Comment" v-model="comment.body" cols="1" rows="1"></textarea>
+                                        </div>
+                                        <div class="input-box email">
+                                            <input type="text" placeholder="Email Address" v-model="comment.email">
+                                        </div>
+                                        <div class="input-box password">
+                                            <input type="text" placeholder="Password">
+                                        </div>
+                                        <div class="buttons-set">
+                                            <a href="#" @click="postComment"  title="Log In" class="btn btn-warning text-regular text-uppercase">POST COMMENT</a>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                         <div class="title mt-5">
@@ -74,22 +123,21 @@ Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolor
                     </div>
                     
                 </div>
-            </section>
-            <section id="cta">
-		<div class="container background-register">
-			<div class="row" id="cta_details">
-				<div class="col-lg-6 ">
-					<div>
-						<h5 class="text-center text-light text-lg-left">Ready to Join <br> Gaxut??</h5>
-					</div>
-				</div>
-				<div class="col-lg-6">
-					<a href="#"  class="btn start-tutor" value="">Register Now</a>
-			</div>
-			</div>
-		</div>
-		
-	</section>
+        </section>
+        <section id="cta">
+            <div class="container background-register">
+                <div class="row" id="cta_details">
+                    <div class="col-lg-6 ">
+                        <div>
+                            <h5 class="text-center text-light text-lg-left">Ready to Join <br> Gaxut??</h5>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <a href="#"  class="btn start-tutor" value="">Register Now</a>
+                </div>
+                </div>
+            </div>
+		</section>
     </div>
 </template>
 
@@ -103,19 +151,178 @@ export default {
   },
   data(){
     return{
-
+        comment:{
+            body:null,
+            email:"anonymous"
+        }
     }
   },
   methods: {
-    
+    postComment:function(){
+    //     window.axios.post(`"https://still-sands-03593.herokuapp.com/api/blog/comment/${this.comment.email}"`,this.comment.body)
+    //   .then(response=>console.log(response))
+    window.axios.post("https://still-sands-03593.herokuapp.com/api/blog/comment/"+this.comment.email,{comment: this.comment.body})
+        .then(response=>console.log(response));
+    }
   },
+  created: function(){
+      window.axios.get("https://still-sands-03593.herokuapp.com/api/blog/")
+      .then(response=>console.log(response))
+  }
 }
 </script>
 
 <style>
     .background-register
     {
-    background: url(../assets/images/Group\ 17.png) !important;
-    background-position: center !important;
+        background: url(../assets/images/Group\ 17.png) !important;
+        background-position: center !important;
+    }
+    .comments .note-comments {
+        color: #484848;
+        font-size: 20px;
+        margin-bottom: 30px;
+        float: left;
+    }
+    .comments .list-comments {
+    float: left;
+    }
+    .comments .list-comments li {
+    width: 100%;
+    float: left;
+    padding: 20px 0;
+    }
+    .comments .list-comments li .user-avatar {
+    float: left;
+    }
+    .comments .list-comments li .user-comments {
+    float: left;
+    padding-left: 30px;
+    }
+    .comments .list-comments li .user-comments h4 {
+    font-size: 20px;
+    color: #484848;
+    margin-bottom: 20px;
+    }
+    .comments .list-comments li .user-comments p {
+    font-size: 14px;
+    color: #484848;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    }
+    .comments .list-comments li .user-comments a {
+    color: #9f9f9f;
+    font-size: 14px;
+    }
+    @media (min-width: 992px) {
+    .comments .list-comments li .user-avatar {
+        width: 8%;
+    }
+    .comments .list-comments li .user-comments {
+        width: 92%;
+    }
+    }
+    @media (max-width: 991px) {
+    .comments .list-comments li .user-avatar {
+        width: 20%;
+    }
+    .comments .list-comments li .user-comments {
+        width: 80%;
+    }
+    }
+    @media (min-width: 768px) {
+    .comments {
+        padding: 55px 0;
+    }
+    }
+    @media (max-width: 767px) {
+    .comments {
+        padding: 25px 0;
+    }
+    }
+
+    .write-comments .title-write h4 {
+    color: #484848;
+    font-size: 20px;
+    margin-bottom: 30px;
+    float: left;
+    }
+    .write-comments form .input-box {
+    margin-bottom: 20px;
+    }
+    .write-comments form .your-comment {
+    border-bottom: 1px solid #9f9f9f;
+    width: 100%;
+    float: left;
+    padding-bottom: 45px;
+    }
+    .write-comments form .email {
+    float: left;
+    }
+    .write-comments form .password {
+    float: left;
+    }
+    .write-comments form input {
+    padding: 15px;
+    }
+    .write-comments form textarea {
+    padding-top: 15px;
+    padding-left: 15px;
+    height: 45px;
+    }
+    .write-comments form textarea, .write-comments form input {
+    width: 100%;
+    float: left;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 1px solid #9f9f9f;
+    color: #9f9f9f;
+    font-size: 15px;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    }
+    .write-comments form .buttons-set {
+    text-align: right;
+    margin-top: 30px;
+    width: 100%;
+    float: left;
+    }
+    .write-comments form .buttons-set a {
+    padding: 18px 60px;
+    font-size: 16px;
+    color: #ffffff;
+    display: block;
+    float: right;
+    }
+    @media (min-width: 768px) {
+    .write-comments form .email {
+        margin-right: 4%;
+    }
+    .write-comments form .email, .write-comments form .password {
+        width: 48%;
+    }
+    }
+    @media (max-width: 767px) {
+    .write-comments form .email, .write-comments form .password {
+        width: 100%;
+    }
+    }
+    .write-comments ::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: #9f9f9f;
+    }
+    .write-comments ::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #9f9f9f;
+    }
+    .write-comments :-ms-input-placeholder {
+    /* IE 10+ */
+    color: #9f9f9f;
+    }
+    .write-comments :-moz-placeholder {
+    /* Firefox 18- */
+    color: #9f9f9f;
     }
 </style>

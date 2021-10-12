@@ -70,48 +70,50 @@
                             <div class="tab-pane fade" id="v-pills-postjobs" role="tabpanel" aria-labelledby="v-pills-postjobs-tab">
                                 <div class="container" id="post-jobs">
                                     <h5 class="title">Post Job Advert</h5>
-                                    <form action="">
+                                    <form @submit.prevent="submitJob">
                                         <div class="form-group row">
                                             <label for="jobtitle" class="col-sm-2 col-form lable">Job Title</label>
                                             <div class="col-sm-6">
-                                                <input type="text" id="jobtitle" class="form-control">
+                                                <input type="text" id="jobtitle" class="form-control" v-model="job.job_title">
                                             </div>
                                             
                                         </div>
                                         <div class="form-group row">
                                             <label for="jobdesc" class="col-sm-2 col-form lable">Job Description</label>
                                             <div class="col-sm-6">
-                                                <textarea name="" id="jobdesc" cols="30" rows="10" class="form-control"></textarea>
+                                                <textarea name="" id="jobdesc" cols="30" rows="10" class="form-control" v-model="job.job_description">
+
+                                                </textarea>
                                             </div>
                                             
                                         </div>
                                         <div class="form-group row">
                                             <label for="jobcat" class="col-sm-2 col-form lable">Job Category</label>
                                             <div class="col-sm-6">
-                                                <input type="text" id="jobcat" class="form-control">
+                                                <input type="text" id="jobcat" class="form-control" v-model="job.job_category">
                                             </div>
                                             
                                         </div>
                                         <div class="form-group row">
                                             <label for="minamount" class="col-sm-2 col-form lable">Minimum Amount</label>
                                             <div class="col-sm-6">
-                                                <input type="text" id="minamount" class="form-control">
+                                                <input type="text" id="minamount" class="form-control" v-model="job.minimum_amount">
                                             </div>
                                             
                                         </div>
                                         <div class="form-group row">
                                             <label for="maxamount" class="col-sm-2 col-form lable">Maximum Amount</label>
                                             <div class="col-sm-6">
-                                                <input type="text" id="maxamount" class="form-control">
+                                                <input type="text" id="maxamount" class="form-control" v-model="job.maximum_amount">
                                             </div>
                                             
                                         </div>
+                                        <button type="submit" style="background: #FBF09E; color:#F4D634; border-radius: 9px; padding: 5px 20px 5px 20px;" class="btn btn-md btn-warning mt-4" href="#"> Post Job </button>
                                     </form>
-                                    <a style="background: #FBF09E; color:#F4D634; border-radius: 9px; padding: 5px 20px 5px 20px;" class="btn btn-md btn-warning mt-4" href="#"> Post Job </a>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="v-pills-jobsapplied" role="tabpanel" aria-labelledby="v-pills-jobsapplied-tab">
-                                <div class="container" id="jobs-applied-for">
+                                <div class="container" id="jobs-applied-for">   
                                     <h5 class="title">Jobs Applied For</h5>
                                 </div>
                             </div>
@@ -811,11 +813,20 @@ export default {
   },
   data(){
     return{
-
+        job:{
+            job_title:'',
+            job_description:'', 	
+            job_category:'',	
+            minimum_amount:'',	
+            maximum_amount:'',
+        }
     }
   },
   methods: {
-    
+    submitJob: function(){
+        window.axios.post('https://still-sands-03593.herokuapp.com/api/job', this.job)
+        .then(response => console.log(response));
+    }
   },
 }
 </script>

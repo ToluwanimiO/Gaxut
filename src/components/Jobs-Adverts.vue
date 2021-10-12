@@ -188,6 +188,10 @@ export default {
   methods: {
     
   },
+  created: function(){
+      window.axios.get("http://still-sands-03593.herokuapp.com/api/job/my-job-adverts/")
+      .then(response=>console.log(response))
+  }
 }
 </script>
 

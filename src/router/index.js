@@ -21,6 +21,7 @@ import TutorDashboard from '../components/TutorDashboard.vue'
 import TutorJobsAd from '../components/TutorJobsAd.vue'
 import TutorGig from '../components/TutorGig.vue'
 import TutorChat from '../components/TutorChat.vue'
+import PostBlog from '../components/Post-Blog.vue'
 
 Vue.use(VueRouter)
 
@@ -77,7 +78,7 @@ const routes = [
     component: Beatutor
   },
   {
-    path: '/blog-detail',
+    path: '/blog-detail/:blogId',
     name: 'BlogDetail',
     component: BlogDetail
   },
@@ -130,6 +131,11 @@ const routes = [
     path: '/tutor-chat',
     name: 'TutorChat',
     component: TutorChat
+  },
+  {
+    path: '/post-blog',
+    name: 'PostBlog',
+    component: PostBlog
   },
 //   {
 //     // path: '/app/:userid',

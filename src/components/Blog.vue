@@ -11,7 +11,7 @@
                             <div class="card blog_details mb-3">
                                 <img src="../assets/images/photoshop.jpg" alt="" class="card-img-top">
                                 <div class="card-body">
-                                    <router-link to="blog-detail"><h5 class="card-title">12 Relevant Skills To
+                                    <router-link :to="{ name: 'BlogDetail', params: { blogId: 123 }}"><h5 class="card-title">12 Relevant Skills To
                                         Have in Design</h5></router-link>
                                     <p class="text-muted">January 20,2021</p>
                                 </div>
@@ -100,12 +100,17 @@ export default {
   },
   data(){
     return{
-
+        
     }
   },
   methods: {
     
   },
+  created: function(){
+      window.axios.get("http://still-sands-03593.herokuapp.com/api/blog/")
+      .then(response=>console.log("my response is..",response))
+      .catch(error=>console.log("my error is ...",error))
+  }
 }
 </script>
 

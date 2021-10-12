@@ -9,10 +9,19 @@ import './assets/user-dash.css';
 import './assets/user-course-content.css';
 import './assets/fontawesome/fontawesome-all.css';
 import router from './router'
+import axios from 'axios'
+import VueQuillEditor from 'vue-quill-editor'
+ 
+// require styles
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
+ 
+Vue.use(VueQuillEditor, /* { default global options } */)
 // import './assets/js/custom';
 
 Vue.config.productionTip = false
-
+window.axios = axios
 new Vue({
   router,
   render: h => h(App),

@@ -52,22 +52,22 @@
                                             <a class="mr-3" href=""><span class="fab fa-google"></span></a>
                                         </div>
                                         <p class="text-secondary text-center mb-3">Or connect with your email</p>
-                                        <form class="p-md-3" action="">
+                                        <form @submit.prevent="signUp" class="p-md-3" action="">
                                             <div class="form-group mb-3">
                                                 <label for="fName">First Name</label>
-                                                <input type="text" class="form-control rounded-lg" placeholder="Enter first name" id="fName" required>
+                                                <input type="text" v-model="user.firstName" class="form-control rounded-lg" placeholder="Enter first name" id="fName" required>
                                             </div>
                                             <div class="form-group mb-3">
                                                 <label for="lName">Last Name</label>
-                                                <input type="text" class="form-control rounded-lg" placeholder="Enter last name or surname" id="lName" required>
+                                                <input type="text" v-model="user.lastName" class="form-control rounded-lg" placeholder="Enter last name or surname" id="lName" required>
                                             </div>
                                              <div class="form-group mb-3">
                                                  <label for="email">Email</label>
-                                                 <input type="email" class="form-control rounded-lg" placeholder="Enter email address" id="email" required>
+                                                 <input type="email" v-model="user.email" class="form-control rounded-lg" placeholder="Enter email address" id="email" required>
                                              </div>
                                              <div class="form-group mb-3">
                                                  <label for="pwd1">Password</label>
-                                                 <input type="password" class="form-control rounded-lg" placeholder="Enter password" id="pwd1" required>
+                                                 <input type="password" v-model="user.password" class="form-control rounded-lg" placeholder="Enter password" id="pwd1" required>
                                              </div>
                                              <div class="form-group mb-3">
                                                 <label for="pwd2">Confirm Password</label>
@@ -98,11 +98,19 @@ export default {
   },
   data(){
     return{
-
+        user:{
+            firstName:"",
+            lastName:"",
+            email:"",
+            password:""
+        }
     }
   },
   methods: {
-    
+    signUp: function(){
+        window.axios.post('https://still-sands-03593.herokuapp.com/api/user/register/', this.user)
+        .then(response => console.log(response));
+    }
   },
 }
 </script>

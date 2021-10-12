@@ -7,7 +7,15 @@
               <li class="breadcrumb-item"><router-link to="/jobadverts"><a style="color: #F2CB05">Job Offers</a></router-link></li>
               <li class="breadcrumb-item"><router-link to="/gigs"><a style="color: #F2CB05">Gigs</a></router-link></li>
               <li class="breadcrumb-item active" aria-current="page" style="color:#000000;">Chats</li>
+              
             </ol>
+            <div class="d-block text-right">
+                <span @click="newConvo" class="btn btn-sm btn-warning  mr-5 mb-2 text-white">
+                    New conversation
+                    <i class="fa fa-plus " ></i>
+                </span>
+                
+            </div>
           </nav>
           <div class="container-fluid d-none d-lg-block d-md-none" id="chat-desktop">
                 <div class="card" style="border-radius: 0px;">
@@ -520,8 +528,14 @@ export default {
     }
   },
   methods: {
-    
+    newConvo:function(){
+        // yet to confirm how this works, chill
+    }
   },
+  created: function(){
+      window.axios.get("http://still-sands-03593.herokuapp.com/api/conversations/")
+      .then(response=>console.log(response))
+  }
 }
 </script>
 

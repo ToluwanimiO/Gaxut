@@ -40,10 +40,13 @@
 							
 							<router-link to="/jobs" class="main_nav_item">Jobs</router-link>
 							<router-link to="/about" class="main_nav_item">About</router-link>
-							<li class="main_nav_item"><a href="#"><img src="./assets/images/Rectangle 8.png" alt=""></a></li>
+							
 							<!-- <div class="vl" style="border-left: 2px solid black; height: 10px;"></div> -->
-							<router-link to="/login" class="main_nav_item">Login</router-link>
-							<a style="background: #FBF09E; color:#F4D634; border-radius: 9px; padding: 5px 20px 5px 20px;" class="btn btn-md btn-warning" href="login.html"> Signup </a>
+							<template v-if="$route.name!='Login'">
+								<li class="main_nav_item"><a href="#"><img src="./assets/images/Rectangle 8.png" alt=""></a></li>
+								<router-link to="/login" class="main_nav_item">Login</router-link>
+								<router-link to="/login"><a style="background: #FBF09E; color:#F4D634; border-radius: 9px; padding: 5px 20px 5px 20px;" class="btn btn-md btn-warning"> Signup </a></router-link>
+							</template>
 						</ul>
 					</div>
 				</nav>
@@ -104,10 +107,13 @@
 				<ul class="menu_list menu_mm">
 					<li class="menu_item menu_mm mb-3"><a href="#"><img src="./assets/images/logo.png" alt="" style="width: 120px;"></a></li>
 					<router-link to="/courses"><li class="menu_item menu_mm mb-3" @click="closeMenu">Categories</li></router-link>
-					<router-link to="jobs"><li class="menu_item menu_mm mb-3" @click="closeMenu">Jobs</li></router-link>
+					<router-link to="/jobs"><li class="menu_item menu_mm mb-3" @click="closeMenu">Jobs</li></router-link>
 					<router-link to="/about"><li class="menu_item menu_mm mb-3" @click="closeMenu">About</li></router-link>
-					<li class="menu_item menu_mm mb-3" style="margin-top: 70px;"><a href="#">Login</a></li>
-					<a style="background: #FBF09E; color:#F4D634; border-radius: 9px; padding: 5px 20px 5px 20px;" class="btn btn-md btn-warning mb-3" href="#"> Signup </a>
+					<template v-if="$route.name!='Login'">
+						<router-link to="/login"><li class="menu_item menu_mm mb-3" @click="closeMenu" style="margin-top: 70px;"><a>Login</a></li></router-link>
+						<router-link to="/login"><a @click="closeMenu" style="background: #FBF09E; color:#F4D634; border-radius: 9px; padding: 5px 20px 5px 20px;" class="btn btn-md btn-warning mb-3"> Signup </a></router-link>	
+					</template>
+					
 				</ul>
 				<div class="menu_copyright menu_mm">Gaxut All rights reserved</div>
 			</div>
@@ -118,7 +124,7 @@
   <!-- route outlet -->
   <!-- component matched by the route will render here -->
   <router-view></router-view>
-  <footer class="footer ">
+  <footer class="footer "  v-if="$route.name != 'Login'">
 		<div class="container">
 			
 
