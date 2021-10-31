@@ -1,6 +1,9 @@
 <template>
     <div>
         <div id="editor">
+            <div class="alert alert-success" v-bind:class="{'d-none':data_response.truth,'alert-danger':data_response.success}"  role="alert">
+                {{data_response.value}}
+            </div>
             <p class="title-text text-center">Create new Blog</p>
             <input type="text" class="form-control topic-input" placeholder="Blog Topic" v-model="blogPost.title"/>
             <quill-editor v-model="blogPost.content" 
@@ -22,20 +25,52 @@ export default {
   },
   data(){
     return{
+        token:"",
         blogPost:{
             title:null,
             content:null,
-            author:"anonymous"
+            // author:"anonymous"
         },
         editorOption: {
             theme: 'snow'
+        },
+        data_response:{
+            truth:true,
+            value:"",
+            success:false
         }
     }
   },
+  created:function(){
+      console.log(localStorage.getItem("userdetails"))
+      if(localStorage.getItem("userdetails")){
+          this.token = JSON.parse(localStorage.getItem("userdetails")).token
+          console.log(this.token)
+      }
+  },
   methods: {
     postBlog:function(){
-        window.axios.post("https://still-sands-03593.herokuapp.com/api/blog/",this.blogPost)
-        .then(response=>console.log(response));
+        window.axios.post("https://still-sands-03593.herokuapp.com/api/blog/create-post/",this.blogPost,
+        {
+            headers: {
+                Authorization: 'Token  ' + this.token
+            }
+        })
+        .then(response =>{ 
+            if(response.status == 201){
+                this.data_response.truth = false
+                this.data_response.value = "Post succesfully created"
+                this.data_response.success = false
+                this.$router.push({path:"/blog"})
+            }
+        })
+        .catch(err=>{
+            if(err.response.status == 401){
+                this.data_response.truth = false              
+                this.data_response.value = "Please login to create a post"
+                this.data_response.success = true
+            }
+        });
     }
   },
 }

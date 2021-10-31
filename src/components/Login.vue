@@ -17,7 +17,11 @@
                             </ul>
                         
                             <!-- Tab panes -->
+                            
                             <div class="tab-content">
+                                <div class="alert alert-success" v-bind:class="{'d-none':data_response.truth,'alert-danger':data_response.success}"  role="alert">
+                                    {{data_response.value}}
+                                </div>
                                 <div id="login" class="container tab-pane active"><br>
                                    <div class="container-fluid justify-content-center p-3" >
                                        <h4 class="text-center font-weight-bold mt-4 mb-2">Log into your account</h4>
@@ -27,14 +31,14 @@
                                            <a class="mr-3" href=""><span class="fab fa-google"></span></a>
                                        </div>
                                        <p class="text-secondary text-center mb-3">Or connect with your email</p>
-                                       <form class="p-md-3" action="">
+                                       <form @submit.prevent="logIn" class="p-md-3" action="">
                                             <div class="form-group mb-4">
                                                 <label for="email">Email</label>
-                                                <input type="email" class="form-control rounded-lg" placeholder="Enter email address" id="email" required>
+                                                <input v-model="logUser.email" type="text" class="form-control rounded-lg" placeholder="Enter email" id="email" required>
                                             </div>
                                             <div class="form-group mb-4">
                                                 <label for="pwd">Password</label>
-                                                <input type="password" class="form-control rounded-lg" placeholder="Enter password" id="pwd" required>
+                                                <input v-model="logUser.password" type="password" class="form-control rounded-lg" placeholder="Enter password" id="pwd" required>
                                             </div>
                                             <p class="extra-notes">By clicking log in, you agree to our <span>Terms of Use</span> and <span>Privacy Policy</span></p>
                                             <button type="submit" class="btn btn-submit mt-2 text-white">LOG IN</button>
@@ -54,12 +58,16 @@
                                         <p class="text-secondary text-center mb-3">Or connect with your email</p>
                                         <form @submit.prevent="signUp" class="p-md-3" action="">
                                             <div class="form-group mb-3">
+                                                 <label for="username">Username</label>
+                                                 <input type="text" v-model="user.username" class="form-control rounded-lg" placeholder="Enter username" id="username" required>
+                                             </div>
+                                            <div class="form-group mb-3">
                                                 <label for="fName">First Name</label>
-                                                <input type="text" v-model="user.firstName" class="form-control rounded-lg" placeholder="Enter first name" id="fName" required>
+                                                <input type="text" v-model="user.first_name" class="form-control rounded-lg" placeholder="Enter first name" id="fName" required>
                                             </div>
                                             <div class="form-group mb-3">
                                                 <label for="lName">Last Name</label>
-                                                <input type="text" v-model="user.lastName" class="form-control rounded-lg" placeholder="Enter last name or surname" id="lName" required>
+                                                <input type="text" v-model="user.last_name" class="form-control rounded-lg" placeholder="Enter last name or surname" id="lName" required>
                                             </div>
                                              <div class="form-group mb-3">
                                                  <label for="email">Email</label>
@@ -71,7 +79,7 @@
                                              </div>
                                              <div class="form-group mb-3">
                                                 <label for="pwd2">Confirm Password</label>
-                                                <input type="password" class="form-control rounded-lg" placeholder="Re-enter password" id="pwd2" required>
+                                                <input type="password" v-model="user.password2" class="form-control rounded-lg" placeholder="Re-enter password" id="pwd2" required>
                                             </div>
                                              <p class="extra-notes">By clicking Sign up, you agree to our <span>Terms of Use</span> and <span>Privacy Policy</span> </p>
                                              <button type="submit" class="btn btn-submit">SIGN UP</button>
@@ -99,18 +107,64 @@ export default {
   data(){
     return{
         user:{
-            firstName:"",
-            lastName:"",
+            username:"",
+            first_name:"",
+            last_name:"",
+            email:"",
+            password:"",
+            password2:""
+        },
+        logUser:{
             email:"",
             password:""
+        },
+        data_response:{
+            truth:true,
+            value:"",
+            success:false
         }
     }
   },
   methods: {
     signUp: function(){
+        console.log('sign')
         window.axios.post('https://still-sands-03593.herokuapp.com/api/user/register/', this.user)
-        .then(response => console.log(response));
+        .then(response =>{ 
+            if(response.status == 201){
+                this.data_response.truth = false
+                this.data_response.value = "User registered"
+                this.data_response.success = false
+            }
+        })
+        .catch(err=>{
+            console.log(err.response)
+            if(err.response.status != 201){
+                this.data_response.truth = false
+                var key = Object.keys(err.response.data)[0]
+                console.log(key);                
+                this.data_response.value = err.response.data[key][0]
+                console.log(this.data_response.value);
+                this.data_response.success = true
+            }
+        });
+    },
+    logIn: function(){
+        console.log('log')
+        window.axios.post('https://still-sands-03593.herokuapp.com/api/user/login/', this.logUser)
+        .then(response =>{ 
+            if(response.status == 200){
+                localStorage.setItem("userdetails",JSON.stringify(response.data))
+                this.$router.push({ path: '/' })
+            }
+        })
+        .catch(err=>{
+            console.log(err.response.data.username[0])
+            this.data_response.truth = false            
+            this.data_response.value = err.response.data.username[0]
+            this.data_response.success = true
+        });
     }
+
   },
 }
 </script>

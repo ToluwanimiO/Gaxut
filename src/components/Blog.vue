@@ -7,18 +7,22 @@
                         <p>Articles you'll love</p>
                     </div>
                     <div class="row">
-                        <div class="col-lg-4">
-                            <div class="card blog_details mb-3">
+                        <!-- {{item}} -->
+                        <div class="col-lg-4" v-for="(item,index) in posts" :key="index">
+                            <div class="card blog_details mb-3" style="height: 90%;">
                                 <img src="../assets/images/photoshop.jpg" alt="" class="card-img-top">
                                 <div class="card-body">
-                                    <router-link :to="{ name: 'BlogDetail', params: { blogId: 123 }}"><h5 class="card-title">12 Relevant Skills To
-                                        Have in Design</h5></router-link>
-                                    <p class="text-muted">January 20,2021</p>
+                                    <router-link :to="{ name: 'BlogDetail', params: { blogId: 123 }}">
+                                        <h5 class="card-title">
+                                            {{item.title}}
+                                        </h5>
+                                    </router-link>
+                                    <p class="text-muted">{{item.date_updated | truncate(10)}}</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4">
-                            <div class="card blog_details mb-3">
+                        <!-- <div class="col-lg-4">
+                            <div class="card blog_details mb-3" style="height: 90%;">
                                 <img src="../assets/images/photoshop.jpg" alt="" class="card-img-top">
                                 <div class="card-body">
                                     <a href=""><h5 class="card-title">4 Harmful Myth that Harm Cats</h5></a>
@@ -35,10 +39,10 @@
                                     <p class="text-muted">January 20,2021</p>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
 
-                    <div class="row mt-5 mb-5">
+                    <!-- <div class="row mt-5 mb-5">
                         <div class="col-lg-4">
                             <div class="card blog_details mb-3">
                                 <img src="../assets/images/photoshop.jpg" alt="" class="card-img-top">
@@ -68,7 +72,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     
                 </div>
             </section>
@@ -94,23 +98,35 @@
 // import HelloWorld from './components/HelloWorld.vue'
 
 export default {
-  name: 'Blog',
-  components: {
-    // HelloWorld
-  },
-  data(){
-    return{
-        
-    }
-  },
-  methods: {
     
-  },
-  created: function(){
-      window.axios.get("http://still-sands-03593.herokuapp.com/api/blog/")
-      .then(response=>console.log("my response is..",response))
-      .catch(error=>console.log("my error is ...",error))
-  }
+    name: 'Blog',
+    components: {
+        // HelloWorld
+    },
+    data(){
+        return{
+            posts:JSON.parse(localStorage.getItem("posts"))
+        }
+    },
+    methods: {
+        
+    },
+    created: function(){
+        window.axios.get("http://still-sands-03593.herokuapp.com/api/blog/")
+        .then(response=>
+        {
+            console.log("my response is..",response)
+            localStorage.setItem("posts",JSON.stringify(response.data.results))
+        })
+        .catch(error=>console.log("my error is ...",error))
+    },
+    filters: {
+        truncate: function(data,num){
+            const reqdString = 
+              data.split("").slice(0, num).join("");
+            return reqdString;
+        }
+    }
 }
 </script>
 
