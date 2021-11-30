@@ -123,6 +123,12 @@ export default {
     methods: {
         
     },
+    watch:{
+        posts: function()
+        {
+            this.posts = JSON.parse(localStorage.getItem("posts"))
+        }
+    },
     created: function(){
         window.axios.get("https://still-sands-03593.herokuapp.com/api/blog/")
         .then(response=>
