@@ -3,8 +3,20 @@
         <section id="privacy">
                 <div class="container">
                     <div class="title">
+                        <div class="d-block text-right">
+                            
+                
+                        </div>
                         <h5>Our Blog</h5><br>
-                        <p>Articles you'll love</p>
+                        <p>
+                            Articles you'll love
+                            <router-link to="/post-blog" class="btn btn-sm btn-secondary  mr-5 text-white">
+                                Post Blog
+                                <i class="fa fa-edit " ></i>
+                            </router-link>
+                        </p>
+                        
+                        
                     </div>
                     <div class="row">
                         <!-- {{item}} -->
