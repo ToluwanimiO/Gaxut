@@ -112,7 +112,7 @@ export default {
         
     },
     created: function(){
-        window.axios.get("http://still-sands-03593.herokuapp.com/api/blog/")
+        window.axios.get("https://still-sands-03593.herokuapp.com/api/blog/")
         .then(response=>
         {
             console.log("my response is..",response)
