@@ -103,7 +103,7 @@ const routes = [
     component: Chats
   },
   {
-    path: '/login',
+    path: '/login/:action',
     name: 'Login',
     component: Login
   },

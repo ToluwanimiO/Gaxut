@@ -44,8 +44,8 @@
 							<!-- <div class="vl" style="border-left: 2px solid black; height: 10px;"></div> -->
 							<template v-if="$route.name!='Login'">
 								<li class="main_nav_item"><a href="#"><img src="./assets/images/Rectangle 8.png" alt=""></a></li>
-								<router-link to="/login" class="main_nav_item">Login</router-link>
-								<router-link to="/login"><a style="background: #FBF09E; color:#F4D634; border-radius: 9px; padding: 5px 20px 5px 20px;" class="btn btn-md btn-warning"> Signup </a></router-link>
+								<router-link to="/login/login" class="main_nav_item">Login</router-link>
+								<router-link to="/login/signup"><a style="background: #FBF09E; color:#F4D634; border-radius: 9px; padding: 5px 20px 5px 20px;" class="btn btn-md btn-warning"> Signup </a></router-link>
 							</template>
 						</ul>
 					</div>
@@ -110,8 +110,8 @@
 					<router-link to="/jobs"><li class="menu_item menu_mm mb-3" @click="closeMenu">Jobs</li></router-link>
 					<router-link to="/about"><li class="menu_item menu_mm mb-3" @click="closeMenu">About</li></router-link>
 					<template v-if="$route.name!='Login'">
-						<router-link to="/login"><li class="menu_item menu_mm mb-3" @click="closeMenu" style="margin-top: 70px;"><a>Login</a></li></router-link>
-						<router-link to="/login"><a @click="closeMenu" style="background: #FBF09E; color:#F4D634; border-radius: 9px; padding: 5px 20px 5px 20px;" class="btn btn-md btn-warning mb-3"> Signup </a></router-link>	
+						<router-link to="/login/login"><li class="menu_item menu_mm mb-3" @click="closeMenu" style="margin-top: 70px;"><a>Login</a></li></router-link>
+						<router-link to="/login/signup"><a @click="closeMenu" style="background: #FBF09E; color:#F4D634; border-radius: 9px; padding: 5px 20px 5px 20px;" class="btn btn-md btn-warning mb-3"> Signup </a></router-link>	
 					</template>
 					
 				</ul>

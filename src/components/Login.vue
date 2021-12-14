@@ -9,10 +9,10 @@
                             <!-- Nav tabs -->
                             <ul class="nav nav-pills nav-justified" role="pill">
                                 <li class="nav-item">
-                                    <a class="nav-link py-3 rounded-0 active text-dark" data-toggle="pill" href="#login">Log in</a>
+                                    <a ref="loginItem" class="nav-link py-3 rounded-0 active text-dark" data-toggle="pill" href="#login">Log in</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link py-3 rounded-0 text-dark" data-toggle="pill" href="#signup">Sign up</a>
+                                    <a ref="signItem" class="nav-link py-3 rounded-0 text-dark" data-toggle="pill" href="#signup">Sign up</a>
                                 </li>
                             </ul>
                         
@@ -58,12 +58,15 @@
                                         <p class="text-secondary text-center mb-3">Or connect with your email</p>
                                         <form @submit.prevent="signUp" class="p-md-3" action="">
                                             <div class="form-group mb-3">
-                                                 <label for="username">Username</label>
-                                                 <input type="text" v-model="user.username" class="form-control rounded-lg" placeholder="Enter username" id="username" required>
+                                                <label for="username">Username</label>
+                                                <input type="text" v-model="user.username" class="form-control rounded-lg" placeholder="Enter username" id="username">
+                                                <small v-if="error.username" class="d-block alert alert-danger small-text text-center">
+                                                    This field is required
+                                                </small>
                                              </div>
                                             <div class="form-group mb-3">
                                                 <label for="fName">First Name</label>
-                                                <input type="text" v-model="user.first_name" class="form-control rounded-lg" placeholder="Enter first name" id="fName" required>
+                                                <input type="text" v-model="user.first_name" class="form-control rounded-lg" placeholder="Enter first name" id="fName">
                                             </div>
                                             <div class="form-group mb-3">
                                                 <label for="lName">Last Name</label>
@@ -106,17 +109,25 @@ export default {
   },
   data(){
     return{
+        error:{
+            username:null,
+            first_name:null,
+            last_name:null,
+            email:null,
+            password:null,
+            password2:null
+        },
         user:{
-            username:"",
-            first_name:"",
-            last_name:"",
-            email:"",
-            password:"",
-            password2:""
+            username:null,
+            first_name:null,
+            last_name:null,
+            email:null,
+            password:null,
+            password2:null
         },
         logUser:{
-            email:"",
-            password:""
+            email:null,
+            password:null
         },
         data_response:{
             truth:true,
@@ -124,29 +135,51 @@ export default {
             success:false
         }
     }
+  }, 
+  mounted:function(){
+      if (this.$route.params.action == "signup")
+      {
+           this.$refs.signItem.click()
+      }
   },
   methods: {
-    signUp: function(){
+    signUp: function(e){
+        //validation
+        this.errors = []
+        console.log(this.errors)
+        if(!this.user.username){
+            this.error.username = true
+        }
+        if(!this.user.first_name){
+            this.errors.push('First Name required')
+        }
+        if(!this.errors.length)
+        {
+            console.log("send to backend")
+        }
+        e.preventDefault();
+        
         console.log('sign')
-        window.axios.post('https://still-sands-03593.herokuapp.com/api/user/register/', this.user)
-        .then(response =>{ 
-            if(response.status == 201){
-                this.data_response.truth = false
-                this.data_response.value = "User registered"
-                this.data_response.success = false
-            }
-        })
-        .catch(err=>{
-            console.log(err.response)
-            if(err.response.status != 201){
-                this.data_response.truth = false
-                var key = Object.keys(err.response.data)[0]
-                console.log(key);                
-                this.data_response.value = err.response.data[key][0]
-                console.log(this.data_response.value);
-                this.data_response.success = true
-            }
-        });
+        // window.axios.post('https://still-sands-03593.herokuapp.com/api/user/register/', this.user)
+        // .then(response =>{ 
+        //     if(response.status == 201){
+        //         this.data_response.truth = false
+        //         this.data_response.value = "User registered"
+        //         this.data_response.success = false
+        //         this.$refs.loginItem.click()
+        //     }
+        // })
+        // .catch(err=>{
+        //     console.log(err.response)
+        //     if(err.response.status != 201){
+        //         this.data_response.truth = false
+        //         var key = Object.keys(err.response.data)[0]
+        //         console.log(key);                
+        //         this.data_response.value = err.response.data[key][0]
+        //         console.log(this.data_response.value);
+        //         this.data_response.success = true
+        //     }
+        // });
     },
     logIn: function(){
         console.log('log')
