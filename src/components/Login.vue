@@ -59,30 +59,45 @@
                                         <form @submit.prevent="signUp" class="p-md-3" action="">
                                             <div class="form-group mb-3">
                                                 <label for="username">Username</label>
-                                                <input type="text" v-model="user.username" class="form-control rounded-lg" placeholder="Enter username" id="username">
-                                                <small v-if="error.username" class="d-block alert alert-danger small-text text-center">
-                                                    This field is required
-                                                </small>
+                                                <input type="text" v-model="user.username" class="form-control rounded-lg" placeholder="Enter username" id="username" required>
+                                                <!-- <small v-if="error.username" class="d-block alert alert-danger small-text text-center">
+                                                    {{error.username}}
+                                                </small> -->
                                              </div>
                                             <div class="form-group mb-3">
                                                 <label for="fName">First Name</label>
-                                                <input type="text" v-model="user.first_name" class="form-control rounded-lg" placeholder="Enter first name" id="fName">
+                                                <input type="text" v-model="user.first_name" class="form-control rounded-lg" placeholder="Enter first name" id="fName" required>
+                                                <!-- <small v-if="error.first_name" class="d-block alert alert-danger small-text text-center">
+                                                    {{error.first_name}}
+                                                </small> -->
                                             </div>
                                             <div class="form-group mb-3">
                                                 <label for="lName">Last Name</label>
                                                 <input type="text" v-model="user.last_name" class="form-control rounded-lg" placeholder="Enter last name or surname" id="lName" required>
+                                                <!-- <small v-if="error.last_name" class="d-block alert alert-danger small-text text-center">
+                                                    {{error.last_name}}
+                                                </small> -->
                                             </div>
                                              <div class="form-group mb-3">
-                                                 <label for="email">Email</label>
-                                                 <input type="email" v-model="user.email" class="form-control rounded-lg" placeholder="Enter email address" id="email" required>
+                                                <label for="email">Email</label>
+                                                <input type="email" v-model="user.email" class="form-control rounded-lg" placeholder="Enter email address" id="email" required>
+                                                <!-- <small v-if="error.email" class="d-block alert alert-danger small-text text-center">
+                                                    {{error.email}}
+                                                </small> -->
                                              </div>
                                              <div class="form-group mb-3">
                                                  <label for="pwd1">Password</label>
                                                  <input type="password" v-model="user.password" class="form-control rounded-lg" placeholder="Enter password" id="pwd1" required>
+                                                <!-- <small v-if="error.password" class="d-block alert alert-danger small-text text-center">
+                                                    {{error.password}}
+                                                </small> -->
                                              </div>
                                              <div class="form-group mb-3">
                                                 <label for="pwd2">Confirm Password</label>
                                                 <input type="password" v-model="user.password2" class="form-control rounded-lg" placeholder="Re-enter password" id="pwd2" required>
+                                                <!-- <small v-if="error.password2" class="d-block alert alert-danger small-text text-center">
+                                                    {{error.password2}}
+                                                </small> -->
                                             </div>
                                              <p class="extra-notes">By clicking Sign up, you agree to our <span>Terms of Use</span> and <span>Privacy Policy</span> </p>
                                              <button type="submit" class="btn btn-submit">SIGN UP</button>
@@ -145,41 +160,65 @@ export default {
   methods: {
     signUp: function(e){
         //validation
-        this.errors = []
-        console.log(this.errors)
-        if(!this.user.username){
-            this.error.username = true
-        }
-        if(!this.user.first_name){
-            this.errors.push('First Name required')
-        }
-        if(!this.errors.length)
-        {
-            console.log("send to backend")
-        }
+        // var fields = ['username','first_name','last_name','email','password','password2']
+        // var i;
+        // for (i = 0; i < 6; i++) {
+        //         console.log(fields[i],'absentt')
+        //         console.log('this.user.'+fields[0])
+        //     }
+        
+        // if(!this.user.username){
+        //     this.error.username ='Username required'
+        // }
+        // if(!this.user.first_name){
+        //     this.error.first_name = 'First Name required'
+        // }
+        // if(!this.user.last_name){
+        //     this.error.last_name= 'Last Name required'
+        // }
+        // if(!this.user.email){
+        //     this.error.email='Email required'
+        // }
+        // if(!this.user.password){
+        //     this.error.password='Password required'
+        // }
+        // if(!this.user.password2){
+        //     this.error.password2='Confirm Password required'
+        // }
+        // else
+        // {
+        //     console.log("send to backend")
+        // }
         e.preventDefault();
         
         console.log('sign')
-        // window.axios.post('https://still-sands-03593.herokuapp.com/api/user/register/', this.user)
-        // .then(response =>{ 
-        //     if(response.status == 201){
-        //         this.data_response.truth = false
-        //         this.data_response.value = "User registered"
-        //         this.data_response.success = false
-        //         this.$refs.loginItem.click()
-        //     }
-        // })
-        // .catch(err=>{
-        //     console.log(err.response)
-        //     if(err.response.status != 201){
-        //         this.data_response.truth = false
-        //         var key = Object.keys(err.response.data)[0]
-        //         console.log(key);                
-        //         this.data_response.value = err.response.data[key][0]
-        //         console.log(this.data_response.value);
-        //         this.data_response.success = true
-        //     }
-        // });
+        window.axios.post('https://still-sands-03593.herokuapp.com/api/user/register/', this.user)
+        .then(response =>{ 
+            if(response.status == 201){
+                this.data_response.truth = false
+                this.data_response.value = "User registered"
+                this.data_response.success = false
+                this.$refs.loginItem.click()
+            }
+        })
+        .catch(err=>{
+            console.log(err.response)
+            if(err.response.status != 201){
+                this.data_response.truth = false
+
+                var key = Object.keys(err.response.data)[0]
+                console.log(key);          
+                if (err.response.data[key][0] == 'This field must be unique.') 
+                {                    
+                    this.data_response.value =key+": "+ err.response.data[key][0]
+                }   
+                else{
+                    this.data_response.value = err.response.data[key][0]
+                }
+                console.log(this.data_response.value);
+                this.data_response.success = true
+            }
+        });
     },
     logIn: function(){
         console.log('log')
