@@ -42,7 +42,7 @@ export default {
     }
   },
   created:function(){
-      console.log(localStorage.getItem("userdetails"))
+    //   console.log(localStorage.getItem("userdetails"))
       if(localStorage.getItem("userdetails")){
           this.token = JSON.parse(localStorage.getItem("userdetails")).token
           console.log(this.token)

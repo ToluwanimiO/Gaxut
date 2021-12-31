@@ -119,7 +119,58 @@
                 </div>
                 <div class="col-md-12" id="mainColumn">    
                     <div class="row">
+                        <div class="col-md-6 col-xl-4 p-2 p-xl-4"  v-for="(item,index) in jobs" :key="index">
+                            <div class="card border border-0 shadow p-2">
+                                <div class="d-flex justify-content-end p-2">
+                                    <a class="category-pill-square rounded px-5 py-1" style="background-color: #f1f5ec; color: #000000;">DESIGN</a>
+                                </div>
+                                <div class="card-body">
+                                    <h4 class="card-title">{{item.job_title}}</h4>
+                                    <p class=" mb-2">{{item.job_description}}</p>
+                                    <small class="posted-by">Posted by: Thompson Ebiaku</small>
+                                    <div class="d-flex my-3">
+                                        <span><i class="far fa-clock"></i> 2 days ago</span>
+                                        <span class="mx-4"><i class="far fa-user"></i> 24 Applicants</span>
+                                    </div>        
+                                    <h4 class="price">${{item.minimum_amount}} - ${{item.maximum_amount}}</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-6 col-xl-4 p-2 p-xl-4">
+                            <div class="card border border-0 shadow p-2">
+                                <div class="d-flex justify-content-end p-2">
+                                    <a class="category-pill-square rounded px-5 py-1" style="background-color: #f1f5ec; color: #000000;">DESIGN</a>
+                                </div>
+                                <div class="card-body">
+                                    <h4 class="card-title">Logo Designer</h4>
+                                    <p class="card-text mb-2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur expedita odit ab deserunt velit obcaecati labore doloremque, eaque pariatur perferendis soluta, quam officiis quae autem. Natus aliquam nobis reprehenderit animi.</p>
+                                    <small class="posted-by">Posted by: Thompson Ebiaku</small>
+                                    <div class="d-flex my-3">
+                                        <span><i class="far fa-clock"></i> 2 days ago</span>
+                                        <span class="mx-4"><i class="far fa-user"></i> 24 Applicants</span>
+                                    </div>        
+                                    <h4 class="price">$50.00</h4>
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-md-6 col-xl-4 p-2 p-xl-4">
+                            <div class="card border border-0 shadow p-2">
+                                <div class="d-flex justify-content-end p-2">
+                                    <a class="category-pill-square rounded px-5 py-1" style="background-color: #f1f5ec; color: #000000;">DESIGN</a>
+                                </div>
+                                <div class="card-body">
+                                    <h4 class="card-title">Logo Designer</h4>
+                                    <p class="card-text mb-2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur expedita odit ab deserunt velit obcaecati labore doloremque, eaque pariatur perferendis soluta, quam officiis quae autem. Natus aliquam nobis reprehenderit animi.</p>
+                                    <small class="posted-by">Posted by: Thompson Ebiaku</small>
+                                    <div class="d-flex my-3">
+                                        <span><i class="far fa-clock"></i> 2 days ago</span>
+                                        <span class="mx-4"><i class="far fa-user"></i> 24 Applicants</span>
+                                    </div>        
+                                    <h4 class="price">$50.00</h4>
+                                </div>
+                            </div>
+                        </div> -->
+                        <!-- <div class="col-md-6 col-xl-4 p-2 p-xl-4">
                             <div class="card border border-0 shadow p-2">
                                 <div class="d-flex justify-content-end p-2">
                                     <a class="category-pill-square rounded px-5 py-1" style="background-color: #f1f5ec; color: #000000;">DESIGN</a>
@@ -169,58 +220,7 @@
                                     <h4 class="price">$50.00</h4>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-6 col-xl-4 p-2 p-xl-4">
-                            <div class="card border border-0 shadow p-2">
-                                <div class="d-flex justify-content-end p-2">
-                                    <a class="category-pill-square rounded px-5 py-1" style="background-color: #f1f5ec; color: #000000;">DESIGN</a>
-                                </div>
-                                <div class="card-body">
-                                    <h4 class="card-title">Logo Designer</h4>
-                                    <p class="card-text mb-2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur expedita odit ab deserunt velit obcaecati labore doloremque, eaque pariatur perferendis soluta, quam officiis quae autem. Natus aliquam nobis reprehenderit animi.</p>
-                                    <small class="posted-by">Posted by: Thompson Ebiaku</small>
-                                    <div class="d-flex my-3">
-                                        <span><i class="far fa-clock"></i> 2 days ago</span>
-                                        <span class="mx-4"><i class="far fa-user"></i> 24 Applicants</span>
-                                    </div>        
-                                    <h4 class="price">$50.00</h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-xl-4 p-2 p-xl-4">
-                            <div class="card border border-0 shadow p-2">
-                                <div class="d-flex justify-content-end p-2">
-                                    <a class="category-pill-square rounded px-5 py-1" style="background-color: #f1f5ec; color: #000000;">DESIGN</a>
-                                </div>
-                                <div class="card-body">
-                                    <h4 class="card-title">Logo Designer</h4>
-                                    <p class="card-text mb-2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur expedita odit ab deserunt velit obcaecati labore doloremque, eaque pariatur perferendis soluta, quam officiis quae autem. Natus aliquam nobis reprehenderit animi.</p>
-                                    <small class="posted-by">Posted by: Thompson Ebiaku</small>
-                                    <div class="d-flex my-3">
-                                        <span><i class="far fa-clock"></i> 2 days ago</span>
-                                        <span class="mx-4"><i class="far fa-user"></i> 24 Applicants</span>
-                                    </div>        
-                                    <h4 class="price">$50.00</h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-xl-4 p-2 p-xl-4">
-                            <div class="card border border-0 shadow p-2">
-                                <div class="d-flex justify-content-end p-2">
-                                    <a class="category-pill-square rounded px-5 py-1" style="background-color: #f1f5ec; color: #000000;">DESIGN</a>
-                                </div>
-                                <div class="card-body">
-                                    <h4 class="card-title">Logo Designer</h4>
-                                    <p class="card-text mb-2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur expedita odit ab deserunt velit obcaecati labore doloremque, eaque pariatur perferendis soluta, quam officiis quae autem. Natus aliquam nobis reprehenderit animi.</p>
-                                    <small class="posted-by">Posted by: Thompson Ebiaku</small>
-                                    <div class="d-flex my-3">
-                                        <span><i class="far fa-clock"></i> 2 days ago</span>
-                                        <span class="mx-4"><i class="far fa-user"></i> 24 Applicants</span>
-                                    </div>        
-                                    <h4 class="price">$50.00</h4>
-                                </div>
-                            </div>
-                        </div>
+                        </div> -->
                         <div class="col-md-12">
                             <div class="d-flex justify-content-center mt-3">
                                 <ul class="nav" id="search-nav">
@@ -279,7 +279,7 @@ export default {
   },
   data(){
     return{
-
+        jobs:[]
     }
   },
   methods: {
@@ -287,7 +287,11 @@ export default {
   },
   created: function(){
       window.axios.get("http://still-sands-03593.herokuapp.com/api/job")
-      .then(response=>console.log(response))
+      .then(response=>
+      {
+        console.log(response.data.results)
+        this.jobs = response.data.results
+      })
   }
 }
 </script>

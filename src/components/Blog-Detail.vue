@@ -3,10 +3,10 @@
         <section id="privacy">
                 <div class="container">
                     <div class="title">
-                        <h5>12 Relevant Skills To Have in Design</h5><br>
+                        <h5>{{postDetail.title}}</h5><br>
                         <div class="row details">
-                        <div class=" col"><p class="text-muted"><i class="fa fa-edit"></i> By Isiah</p></div>
-                        <div class=" col "><p class="text-muted"><i class="fa fa-calendar-alt"></i> January 20, 2021</p></div>
+                        <div class=" col"><p class="text-muted"><i class="fa fa-edit"></i> By {{postDetail.author}}</p></div>
+                        <div class=" col "><p class="text-muted"><i class="fa fa-calendar-alt"></i> {{postDetail.date_updated | truncate(10)}}</p></div>
                         <div class=" col"><p class="text-muted"><i class="fa fa-hourglass-start"></i> 3 Mins Read</p></div>
                     </div>
                     </div>
@@ -20,12 +20,7 @@
 
                     <div class="mt-5">
                         <p class="text-left">
-                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?<br><br>
-
-                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?<br><br>
-
-                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
-                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora.<br><br>
+                            {{postDetail.content}}
                         </p>
                         <div class="title">
                             <h5 class="mb-3">Share:</h5>
@@ -91,18 +86,17 @@
                         
                     </div>
 
-                    <div class="row mt-5 mb-5">
-                        <div class="col-lg-4">
+                    <div class="row mt-5 mb-5" >
+                        <div class="col-lg-4" v-for="(item,index) in posts" :key="index">
                             <div class="card blog_details mb-3">
                                 <img src="../assets/images/photoshop.jpg" alt="" class="card-img-top">
                                 <div class="card-body">
-                                    <a href=""><h5 class="card-title">12 Relevant Skills To
-                                        Have in Design</h5></a>
-                                    <p class="text-muted">January 20,2021</p>
+                                    <a href=""><h5 class="card-title">{{item.title}}</h5></a>
+                                    <p class="text-muted">{{item.date_updated | truncate(10)}}</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        <!-- <div class="col-lg-4">
                             <div class="card blog_details mb-3">
                                 <img src="../assets/images/photoshop.jpg" alt="" class="card-img-top">
                                 <div class="card-body">
@@ -119,7 +113,7 @@
                                     <p class="text-muted">January 20,2021</p>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     
                 </div>
@@ -154,7 +148,15 @@ export default {
         comment:{
             body:null,
             email:"anonymous"
-        }
+        },
+        postDetail:{
+            author:'',
+            content:'',
+            date_updated:'',
+            title:''
+
+        },
+        posts:[]
     }
   },
   methods: {
@@ -166,9 +168,50 @@ export default {
     }
   },
   created: function(){
-      window.axios.get("https://still-sands-03593.herokuapp.com/api/blog/")
-      .then(response=>console.log(response))
-  }
+      console.log(this.$route.params.blogId)
+      window.axios.get("https://still-sands-03593.herokuapp.com/api/blog/"+this.$route.params.blogId)
+      .then(response=>
+      {
+        //   console.log(response)
+        
+          this.postDetail.author=response.data.author          
+          var content=response.data.content
+          var doc = new DOMParser().parseFromString(content, "text/xml");
+          this.postDetail.content=doc.firstChild.innerHTML
+          this.postDetail.date_updated=response.data.date_updated
+          this.postDetail.title=response.data.title
+
+
+      })
+      //
+      if(!(localStorage.getItem('posts')))
+      {
+        window.axios.get("https://still-sands-03593.herokuapp.com/api/blog/")
+        .then(response=>
+        {
+            console.log("my response is..",response)
+            localStorage.setItem("posts",JSON.stringify(response.data.results))
+            var postsList=JSON.parse(localStorage.getItem("posts"))
+            this.posts.push(postsList[0])
+            this.posts.push(postsList[1])
+            this.posts.push(postsList[2])
+        })
+        .catch(error=>console.log("my error is ...",error))
+      }else{
+          var postsList=JSON.parse(localStorage.getItem("posts"))
+          this.posts.push(postsList[0])
+          this.posts.push(postsList[1])
+          this.posts.push(postsList[2])
+      }
+      
+  },
+  filters: {
+        truncate: function(data,num){
+            const reqdString = 
+              data.split("").slice(0, num).join("");
+            return reqdString;
+        }
+    }
 }
 </script>
 

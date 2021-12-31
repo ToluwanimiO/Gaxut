@@ -24,7 +24,7 @@
                             <div class="card blog_details mb-3" style="height: 90%;">
                                 <img src="../assets/images/photoshop.jpg" alt="" class="card-img-top">
                                 <div class="card-body">
-                                    <router-link :to="{ name: 'BlogDetail', params: { blogId: 123 }}">
+                                    <router-link :to="{ name: 'BlogDetail', params: { blogId: item.slug }}">
                                         <h5 class="card-title">
                                             {{item.title}}
                                         </h5>

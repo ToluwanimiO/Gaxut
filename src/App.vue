@@ -44,8 +44,9 @@
 							<!-- <div class="vl" style="border-left: 2px solid black; height: 10px;"></div> -->
 							<template v-if="$route.name!='Login'">
 								<li class="main_nav_item"><a href="#"><img src="./assets/images/Rectangle 8.png" alt=""></a></li>
-								<router-link to="/login/login" class="main_nav_item">Login</router-link>
-								<router-link to="/login/signup"><a style="background: #FBF09E; color:#F4D634; border-radius: 9px; padding: 5px 20px 5px 20px;" class="btn btn-md btn-warning"> Signup </a></router-link>
+								<router-link to="/login/login" class="main_nav_item" v-if="userStatus">Login</router-link>
+								<a v-if="!userStatus" style="color:#ffb606">Welcome {{userFirstName}}!</a>
+								<router-link to="/login/signup"><a style="background: #FBF09E; color:#F4D634; border-radius: 9px; padding: 5px 20px 5px 20px;" class="btn btn-md btn-warning" v-if="userStatus"> Signup </a></router-link>
 							</template>
 						</ul>
 					</div>
@@ -106,12 +107,13 @@
 			<div class="menu menu_mm">
 				<ul class="menu_list menu_mm">
 					<li class="menu_item menu_mm mb-3"><a href="#"><img src="./assets/images/logo.png" alt="" style="width: 120px;"></a></li>
+					<li class=" mb-3" style="color:#ecdc18" v-if="!userStatus"><a>Welcome {{userFirstName}}!</a></li> 
 					<router-link to="/courses"><li class="menu_item menu_mm mb-3" @click="closeMenu">Categories</li></router-link>
 					<router-link to="/jobs"><li class="menu_item menu_mm mb-3" @click="closeMenu">Jobs</li></router-link>
 					<router-link to="/about"><li class="menu_item menu_mm mb-3" @click="closeMenu">About</li></router-link>
 					<template v-if="$route.name!='Login'">
-						<router-link to="/login/login"><li class="menu_item menu_mm mb-3" @click="closeMenu" style="margin-top: 70px;"><a>Login</a></li></router-link>
-						<router-link to="/login/signup"><a @click="closeMenu" style="background: #FBF09E; color:#F4D634; border-radius: 9px; padding: 5px 20px 5px 20px;" class="btn btn-md btn-warning mb-3"> Signup </a></router-link>	
+						<router-link to="/login/login"><li class="menu_item menu_mm mb-3" @click="closeMenu" style="margin-top: 70px;" v-if="userStatus"><a>Login</a></li></router-link>
+						<router-link to="/login/signup"><a @click="closeMenu" style="background: #FBF09E; color:#F4D634; border-radius: 9px; padding: 5px 20px 5px 20px;" v-if="userStatus" class="btn btn-md btn-warning mb-3"> Signup </a></router-link>	
 					</template>
 					
 				</ul>
@@ -224,12 +226,19 @@ export default {
   },
   data(){
     return{
-      date:'',
-      menuValue:''
+		date:'',
+		menuValue:'',
+		userStatus:true,
+		userFirstName:''
     }
   },
   created: function(){
     this.date = new Date().getFullYear()
+	if(localStorage.getItem('userdetails'))
+	{
+		this.userStatus=false
+		this.userFirstName=JSON.parse(localStorage.getItem('userdetails')).first_name
+	}
   },
   methods: {
     closeMenu: function()
