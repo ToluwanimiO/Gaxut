@@ -118,7 +118,7 @@
                     
                 </div>
         </section>
-        <section id="cta">
+        <section id="cta" v-if="userStatus">
             <div class="container background-register">
                 <div class="row" id="cta_details">
                     <div class="col-lg-6 ">
@@ -127,7 +127,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <a href="#"  class="btn start-tutor" value="">Register Now</a>
+                        <router-link to="/login/signup"  class="btn start-tutor" value="">Register Now</router-link>
                 </div>
                 </div>
             </div>
@@ -145,6 +145,7 @@ export default {
   },
   data(){
     return{
+        userStatus:true,
         comment:{
             body:null,
             email:"anonymous"
@@ -168,6 +169,11 @@ export default {
     }
   },
   created: function(){
+      if(localStorage.getItem('userdetails'))
+	{
+		this.userStatus=false
+		this.userFirstName=JSON.parse(localStorage.getItem('userdetails')).first_name
+	}
       console.log(this.$route.params.blogId)
       window.axios.get("https://still-sands-03593.herokuapp.com/api/blog/"+this.$route.params.blogId)
       .then(response=>

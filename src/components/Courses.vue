@@ -3,13 +3,13 @@
             <section  id="category_cate">
         <div class="container-fluid"> 
             <ul class="nav align-items-center" id="subcategory-nav">
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link all">All Programming</a>
+                </li> -->
+                <li class="nav-item"  v-for="(item,index) in categories" :key="index">
+                    <a @click="displayCourses(index)" class="nav-link" v-bind:class="{'all':index==categoryClicked}">{{item.name}}</a>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">Android Development</a>
-                </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a href="#" class="nav-link">IOS Development</a>
                 </li>
                 <li class="nav-item">
@@ -20,22 +20,22 @@
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">Dart Programming</a>
-                </li>
+                </li> -->
             </ul>
             <hr>
             <div class="container m-0 my-md-5 p-0 p-md-2">
-                <h1 class="mb-2">All Programming Courses</h1>
+                <h1 class="mb-2">{{category.name}} Courses</h1>
                 <p class="text-secondary">Courses to take you further in your career goals</p>
             </div>
             <div class="d-flex justify-content-start mb-2 filter-container px-md-2">
                 <button id="filterButton" class="btn btn-outline-secondary"><span class="fas fa-sliders-h"></span> Filters</button>
                 <div class="dropdown">
-                    <button class="btn dropdown-toggle" type="button" id="most-popular" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Most Popular</button>
-                    <div class="dropdown-menu" aria-labelledby="most-popular">
+                    <button class="btn dropdown-toggle" type="button" id="most-popular" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Create a Course</button>
+                    <!-- <div class="dropdown-menu" aria-labelledby="most-popular">
                         <a class="dropdown-item disabled" href="#">Sort</a>
                         <a class="dropdown-item" href="#">Most Popular</a>
                         <a class="dropdown-item" href="#">New</a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="row">
@@ -147,24 +147,25 @@
                 </div>
                 <div class="col-md-12" id="mainColumn">    
                     <div class="container-fluid mt-3 p-0">
-                        <div class="card-category card shadow border-0 px-2 py-1">
+                        <div class="card-category card shadow border-0 px-2 py-1" v-for="(item,index) in courses" :key="index">
                             <img class="float-right" src="../assets/images/social media.jpg" alt="">
                             <div class="d-flex  justify-content-between px-md-3 px-2">
                                 <div class="card-body">
-                                    <a class="category-pill-square rounded px-1 px-md-5 py-1" style="background: #FCF8C1; color: #000000;">Web Programming</a>
-                                    <h4 class="card-title mt-3">Course Title</h4>
-                                    <p class="card-text mb-2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur expedita odit ab deserunt velit obcaecati labore doloremque, eaque pariatur perferendis soluta, quam officiis quae autem. Natus aliquam nobis reprehenderit animi.</p>
-                                    <p class="posted-by">Thompson Ebiaku</p>
+                                    <a class="category-pill-square rounded px-1 px-md-5 py-1" style="background: #FCF8C1; color: #000000;">{{item.description}}</a>
+                                    <h4 class="card-title mt-3">{{item.title}}</h4>
+                                    <p class="card-text mb-2">{{item.description}}.</p>
+                                    <a :href="item.overview" >{{item.overview}}</a>
+                                    <p class="posted-by">{{item.lecturers_name}}</p>
                                     <hr class="my-1 my-md-3">
                                     <div class="d-flex my-md-3">
-                                        <span class="mr-3"><i class="far fa-clock"></i> 2 days ago</span>
-                                        <span class="mx-md-4"><i class="fas fa-signal"></i> All level</span>
+                                        <span class="mr-3"><i class="far fa-clock"></i> {{item.created | truncate(10)}}</span>
+                                        <span class="mx-md-4"><i class="fas fa-signal"></i>{{item.level}}</span>
                                     </div>        
                                 </div>
-                                <h4 class="price my-auto">$50.00</h4>
+                                <h4 class="price my-auto">${{item.price}}</h4>
                             </div>
                         </div>
-                        <div class="card-category card shadow border-0 px-2 py-1">
+                        <!-- <div class="card-category card shadow border-0 px-2 py-1">
                             <img class="float-right" src="../assets/images/social media.jpg" alt="">
                             <div class="d-flex  justify-content-between px-md-3 px-2">
                                 <div class="card-body">
@@ -248,7 +249,7 @@
                                 </div>
                                 <h4 class="price my-auto">$50.00</h4>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="d-flex justify-content-center mt-3">
                             <ul class="nav" id="search-nav">
                                 <li class="nav-item">
@@ -277,7 +278,7 @@
             </div>
         </div>
     </section>
-    <section id="cta" class="mt-3">
+    <section id="cta" class="mt-3" v-if="userStatus">
 		<div class="container background-register">
 			<div class="row" id="cta_details">
 				<div class="col-lg-6 ">
@@ -286,7 +287,7 @@
 					</div>
 				</div>
 				<div class="col-lg-6">
-					<a href="#"  class="btn start-tutor" value="">Register Now</a>
+					<router-link to="/login/signup"  class="btn start-tutor" value="">Register Now</router-link>
 			</div>
 			</div>
 		</div>
@@ -305,12 +306,80 @@ export default {
   },
   data(){
     return{
+        category:'',
+        categories:'',
+        categoryClicked:0,
+        courses:[],
 
+        userStatus:true
     }
   },
   methods: {
-    
+    displayCourses:function(index)
+    {
+        this.categoryClicked=index
+        this.category = this.categories[index]
+        window.axios.get("https://still-sands-03593.herokuapp.com/api/school/"+this.categories[index].slug+"/courses")
+            .then(response=>
+            {
+                console.log(response.data.results)
+                this.courses = response.data.results
+            })
+    }
   },
+  filters: {
+        truncate: function(data,num){
+            const reqdString = 
+              data.split("").slice(0, num).join("");
+            return reqdString;
+        }
+    },
+  created:function()
+  {
+      if(localStorage.getItem('userdetails'))
+	{
+		this.userStatus=false
+		this.userFirstName=JSON.parse(localStorage.getItem('userdetails')).first_name
+	}
+    let param = this.$route.params.category     
+    if(param){
+        this.categoryClicked = param
+        window.axios.get("https://still-sands-03593.herokuapp.com/api/school/categories/")
+        .then(response=>
+        {
+            console.log(response.data)
+            this.categories = response.data
+            this.category = this.categories[param]
+            console.log(this.category)
+            window.axios.get("https://still-sands-03593.herokuapp.com/api/school/"+this.categories[param].slug+"/courses")
+            .then(response=>
+            {
+                console.log(response.data.results)
+                this.courses = response.data.results
+            })
+        })
+    } 
+    else
+    {
+        window.axios.get("https://still-sands-03593.herokuapp.com/api/school/categories/")
+        .then(response=>
+        {
+            console.log(response.data)
+            this.categories = response.data
+            this.category = this.categories[0]
+            console.log(this.category)
+            window.axios.get("https://still-sands-03593.herokuapp.com/api/school/"+this.categories[0].slug+"/courses")
+            .then(response=>
+            {
+                console.log(response.data.results)
+                this.courses = response.data.results
+            })
+        })
+    }
+    
+      
+      
+  }
 }
 </script>
 

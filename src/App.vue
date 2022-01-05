@@ -1,5 +1,5 @@
 <template>
-	<div class="super_container">
+	<div class="super_container" >
 		<header class="header d-flex flex-row">
 			<div class=" d-flex flex-row align-items-center">
 				<!-- Logo -->
@@ -22,10 +22,12 @@
 								<a  style = "color:#000000;" class= "main_nav_item" href="javascript:void(0)" data-toggle="dropdown"
 								aria-haspopup="true" aria-expanded="false">Categories</a>
 								<div class="dropdown-menu dropdown-menu-left user-dd animated flipInY">
-									<a class="dropdown-item mt-3" href="javascript:void(0)">
-										Programming</a>
+									<div v-for="(item,index) in categories" :key="index">
+										<router-link :to="{ name: 'Courses', params: { category: index }}" class="dropdown-item mt-3">
+											{{item.name}}</router-link>
 										<div class="dropdown-divider"></div>
-									<a class="dropdown-item mt-3" href="javascript:void(0)">
+									</div>
+									<!-- <a class="dropdown-item mt-3" href="javascript:void(0)">
 										Graphics Design</a>
 									<div class="dropdown-divider"></div>
 									<a class="dropdown-item mt-3" href="javascript:void(0)">
@@ -33,9 +35,9 @@
 									<div class="dropdown-divider"></div>
 									<a class="dropdown-item mt-3" href="javascript:void(0)">
 									Copy Writing</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item mt-3" href="javascript:void(0)">
-								Cryptocurrency</a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item mt-3" href="javascript:void(0)">
+									Cryptocurrency</a> -->
 								</div>
 							
 							<router-link to="/jobs" class="main_nav_item">Jobs</router-link>
@@ -108,6 +110,7 @@
 				<ul class="menu_list menu_mm">
 					<li class="menu_item menu_mm mb-3"><a href="#"><img src="./assets/images/logo.png" alt="" style="width: 120px;"></a></li>
 					<li class=" mb-3" style="color:#ecdc18" v-if="!userStatus"><a>Welcome {{userFirstName}}!</a></li> 
+					<router-link to="/"><li class="menu_item menu_mm mb-3" @click="closeMenu">Home</li></router-link>
 					<router-link to="/courses"><li class="menu_item menu_mm mb-3" @click="closeMenu">Categories</li></router-link>
 					<router-link to="/jobs"><li class="menu_item menu_mm mb-3" @click="closeMenu">Jobs</li></router-link>
 					<router-link to="/about"><li class="menu_item menu_mm mb-3" @click="closeMenu">About</li></router-link>
@@ -229,16 +232,23 @@ export default {
 		date:'',
 		menuValue:'',
 		userStatus:true,
-		userFirstName:''
+		userFirstName:'',
+		categories:[]
     }
   },
-  created: function(){
+  created: function(){ 
     this.date = new Date().getFullYear()
 	if(localStorage.getItem('userdetails'))
 	{
 		this.userStatus=false
 		this.userFirstName=JSON.parse(localStorage.getItem('userdetails')).first_name
 	}
+	window.axios.get("https://still-sands-03593.herokuapp.com/api/school/categories/")
+      .then(response=>
+      {
+        console.log(response.data)
+        this.categories = response.data
+      })
   },
   methods: {
     closeMenu: function()

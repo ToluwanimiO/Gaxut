@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :key="componentKey">
 	<!-- Header -->
 	
 	<!-- The Modal for the Search is missing on the index.html file you upload 
@@ -12,17 +12,15 @@
 					Work at your leisure.</h1>
 				<p>Build skills with courses, get certificates and learn the latest skills to reach your professional goals.</p>
 				
-				<div class="hero-search d-flex">
+				<!-- <div class="hero-search d-flex">
 					<i class="fas fa-search"></i>
 					<input type="search" name="search" id="search" class="hero-input" placeholder="What do you want to learn?">
 					<select class="select" id="">
-						<option>Categories</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
+						<option disabled selected>Categories</option>
+						<option :value="item.name" v-for="(item,index) in categories" :key="index">{{item.name}}</option>
 					</select>
 					<input class="submit" type="submit" value="Search">
-				</div>
+				</div> -->
 			</div>
 			
 			<div class="hero-img">
@@ -35,43 +33,40 @@
 		<div class="course-category">
 			<h1>Our Course Categories</h1>
 			<div class="container-fluid my-5 align-items-center">
-				<button @click="slideLeft" id="slideLeft"><i class="fas fa-chevron-left"></i></button>
+				<span @click="slideLeft" id="slideLeft"><i class="fas fa-chevron-left"></i></span>
 				
-				<div class="pill-nav" id="navPill">
-					<a class="pill active" href="#category">Most Popular</a>
-					<a class="pill" href="#category">New</a>
-					<a class="pill" href="#category">Programming</a>
-					<a class="pill" href="#category">Graphic Design and Product Illustration</a>
-					<a class="pill" href="#category">Digital Marketing</a>
-					<a class="pill" href="#category">Data Science</a>
-				</div>
+				<span class="pill-nav" id="navPill">
+					<!-- <a class="pill active" >Most Popular</a> -->
+					<a class="pill" v-bind:class="{'active':index==categoryClicked}" @click="displayCourses(item.slug,index)" v-for="(item,index) in categories" :key="index">{{item.name}}</a>
+				</span>
 				
-				<button @click="slideRight" id="slideRight"><i class="fas fa-chevron-right"></i></button>
+				<span @click="slideRight" id="slideRight"><i class="fas fa-chevron-right"></i></span>
 			</div>
 
 			<div class="row d-flex" id="category">
 	
-				<div class="col-4">
+				<div class="col-4" v-for="(item,index) in courses" :key="index">
 					<div class="card">
+						<!-- <img class="card-img-top" :src="item.thumbnail" alt="Card image"> -->
 						<img class="card-img-top" src="./assets/images/social media.jpg" alt="Card image">
 						<div class="card-body">
-							<a class="category-pill-round text-dark" style="background: #f2cb054b;">Digital Marketing</a>
-							<h5 class="card-title">Social Media Advertisement</h5>
-							<p class="card-text">Thompson Ebiaku</p>
+							<a class="category-pill-round text-dark" style="background: #f2cb054b;">{{item.description}}</a>
+							<h5 class="card-title">{{item.title}}</h5>
+							<p class="card-text"> {{item.lecturers_name}}</p>
 							
 							<hr class="hr-light">
 
 							<div class="d-flex justify-content-between">
 								<div><span><I class="far fa-clock"></I> 3hr 12mins</span><br>
 									<span>
-									<i class="fas fa-signal"></i> All level</span>
+									<i class="fas fa-signal"></i> {{item.level}}</span>
 								</div>
-								<div><p class="price">$50.00</p></div>
+								<div><p class="price">${{item.price}}</p></div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-4">
+				<!-- <div class="col-4">
 				<div class="card">
 					<img class="card-img-top" src="./assets/images/crypto.jpg" alt="Card image">
 					<div class="card-body">
@@ -166,16 +161,16 @@
 						</div>
 					</div>
 				</div>
-				</div>
+				</div> -->
 			
-				<a style="color: #F2CB05;" class="btn view-all">View All</a>
+				
 
 			</div>
-
+			<a style="color: #F2CB05;" class="btn view-all">View All</a>
 		</div>
 
-		<div class="course-category-mobile" id="category">
-			<p>Most Popular</p>
+		<div class="course-category-mobile mt-5" id="category">
+			<!-- <p>Most Popular</p>
 			<div class="most-popular">
 				<div class="card">
 					<img class="card-img-top" src="./assets/images/social media.jpg" alt="Card image">
@@ -249,9 +244,9 @@
 				</div>
 
 				<a style="color: #F2CB05;" class="btn view-all">View All</a>
-			</div>
+			</div> -->
 			
-			<button class="accordion-link">New</button>
+			<!-- <button class="accordion-link" >New</button>
 			<div class="accordionPanel">
 				<div class="card">
 					<img class="card-img-top" src="./assets/images/social media.jpg" alt="Card image">
@@ -326,88 +321,89 @@
 				
 				<a style="color: #F2CB05;" class="btn view-all">View All</a>
 
+			</div> -->
+			<h1 style="margin-top:-70px">Our Course Categories</h1>
+		<div id="accordion">
+			<div v-for="(item,index) in categories" :key="index"> 
+				<button @click="displayCourses(item.slug,index)" style="color:black"  class="accordion-link btn-secondary" data-toggle="collapse" :data-target="`#firstCategory`+index" >{{item.name}}</button>
+				<div :id="`firstCategory`+index" class="collapse accordionPanel" data-parent="#accordion">
+					<div class="card" v-for="(item,index) in courses" :key="index">
+						<img class="card-img-top" src="./assets/images/social media.jpg" alt="Card image">
+						<div class="card-body">
+							<a class="category-pill-round text-dark" style="background-color: #f2cb054b;">{{item.description}}</a>
+							<h5 class="card-title">{{item.title}}</h5>
+							<p class="card-text">{{item.lecturers_name}}</p>
+							
+							<hr class="hr-light">
+
+							<div class="d-flex justify-content-between">
+								<div><span><I class="far fa-clock"></I> 3hr 12mins</span><br>
+									<span>
+									<i class="fas fa-signal"></i>{{item.level}}</span>
+								</div>
+								<div><p class="price">${{item.price}}</p></div>
+							</div>
+						</div>
+					</div>
+					<!-- <div class="card">
+						<img class="card-img-top" src="./assets/images/crypto.jpg" alt="Card image">
+						<div class="card-body">
+							<a class="category-pill-round-round text-dark" style="background-color: #bfc7df60;">Cryptocurrency</a>
+							<h5 class="card-title">A Complete Guide to Crypto-Currency</h5>
+							<p class="card-text">Ezekial Irewole</p>
+							
+							<hr class="hr-light">
+
+							<div class="d-flex justify-content-between">
+								<div><span><I class="far fa-clock"></I> 3hr 12mins</span><br>
+									<span>
+									<i class="fas fa-signal"></i> Beginner</span>
+								</div>
+								<div><p class="price">$50.00</p></div>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<img class="card-img-top" src="./assets/images/digital.jpg" alt="Card image">
+						<div class="card-body">
+							<a class="category-pill-round-round text-dark" style="background-color: #f2cb054b;">Digital Marketing</a>
+							<h5 class="card-title">Introduction to Digitalization</h5>
+							<p class="card-text">Jane Dove</p>
+							
+							<hr class="hr-light">
+							<div class="d-flex justify-content-between">
+								<div><span><I class="far fa-clock"></I> 3hr 12mins</span><br>
+									<span>
+									<i class="fas fa-signal"></i> Intermediate</span>
+								</div>
+								<div><p class="price">$50.00</p></div>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<img class="card-img-top" src="./assets/images/node.jpg" alt="Card image">
+						<div class="card-body">
+							<a class="category-pill-round-round text-dark" style="background-color: #cad9ba54;">Programming</a>
+							<h5 class="card-title">NodeJs Crash Course</h5>
+							<p class="card-text">Abraham John</p>
+							
+							<hr class="hr-light">
+							<div class="d-flex justify-content-between">
+								<div><span><I class="far fa-clock"></I> 3hr 12mins</span><br>
+									<span>
+									<i class="fas fa-signal"></i> All level</span>
+								</div>
+								<div><p class="price">$50.00</p></div>
+							</div>
+						</div>
+					</div> -->
+					
+					<a style="color: #F2CB05;" class="btn view-all">View All</a>
+
+				</div>
 			</div>
-
-			
-			<button class="accordion-link">Programming</button>
-			<div class="accordionPanel">
-				<div class="card">
-					<img class="card-img-top" src="./assets/images/social media.jpg" alt="Card image">
-					<div class="card-body">
-						<a class="category-pill-round text-dark" style="background-color: #f2cb054b;">Digital Marketing</a>
-						<h5 class="card-title">Social Media Advertisement</h5>
-						<p class="card-text">Thompson Ebiaku</p>
-						
-						<hr class="hr-light">
-
-						<div class="d-flex justify-content-between">
-							<div><span><I class="far fa-clock"></I> 3hr 12mins</span><br>
-								<span>
-								<i class="fas fa-signal"></i> All level</span>
-							</div>
-							<div><p class="price">$50.00</p></div>
-						</div>
-					</div>
-				</div>
-				<div class="card">
-					<img class="card-img-top" src="./assets/images/crypto.jpg" alt="Card image">
-					<div class="card-body">
-						<a class="category-pill-round-round text-dark" style="background-color: #bfc7df60;">Cryptocurrency</a>
-						<h5 class="card-title">A Complete Guide to Crypto-Currency</h5>
-						<p class="card-text">Ezekial Irewole</p>
-						
-						<hr class="hr-light">
-
-						<div class="d-flex justify-content-between">
-							<div><span><I class="far fa-clock"></I> 3hr 12mins</span><br>
-								<span>
-								<i class="fas fa-signal"></i> Beginner</span>
-							</div>
-							<div><p class="price">$50.00</p></div>
-						</div>
-					</div>
-				</div>
-				<div class="card">
-					<img class="card-img-top" src="./assets/images/digital.jpg" alt="Card image">
-					<div class="card-body">
-						<a class="category-pill-round-round text-dark" style="background-color: #f2cb054b;">Digital Marketing</a>
-						<h5 class="card-title">Introduction to Digitalization</h5>
-						<p class="card-text">Jane Dove</p>
-						
-						<hr class="hr-light">
-						<div class="d-flex justify-content-between">
-							<div><span><I class="far fa-clock"></I> 3hr 12mins</span><br>
-								<span>
-								<i class="fas fa-signal"></i> Intermediate</span>
-							</div>
-							<div><p class="price">$50.00</p></div>
-						</div>
-					</div>
-				</div>
-				<div class="card">
-					<img class="card-img-top" src="./assets/images/node.jpg" alt="Card image">
-					<div class="card-body">
-						<a class="category-pill-round-round text-dark" style="background-color: #cad9ba54;">Programming</a>
-						<h5 class="card-title">NodeJs Crash Course</h5>
-						<p class="card-text">Abraham John</p>
-						
-						<hr class="hr-light">
-						<div class="d-flex justify-content-between">
-							<div><span><I class="far fa-clock"></I> 3hr 12mins</span><br>
-								<span>
-								<i class="fas fa-signal"></i> All level</span>
-							</div>
-							<div><p class="price">$50.00</p></div>
-						</div>
-					</div>
-				</div>
-				
-				<a style="color: #F2CB05;" class="btn view-all">View All</a>
-
-			</div>
-
-			
-			<button class="accordion-link">Graphic Design & Product Illustration</button>
+		</div>	
+			<!-- <button class="accordion-link">Graphic Design & Product Illustration</button>
 			<div class="accordionPanel">
 				<div class="card">
 					<img class="card-img-top" src="./assets/images/social media.jpg" alt="Card image">
@@ -638,7 +634,7 @@
 				
 				<a style="color: #F2CB05;" class="btn view-all">View All</a>
 
-			</div>
+			</div> -->
 			
 		</div>
 
@@ -646,7 +642,7 @@
 			<div class="job-text">
 				<h1>Get Amazing Jobs With Amazing Offers</h1>
 				<p>Jobs are uploaded daily on different categories; graphic design, programming, data science, crytocurrency and more.</p>
-				<a class="btn view-jobs" href="#">Click to View Jobs</a>	
+				<router-link to="/jobs" class="btn view-jobs" >Click to View Jobs</router-link>	
 			</div>			
 			
 			<div class="job-img">
@@ -656,7 +652,7 @@
 		</div>
 	</section>
 
-	<section id="cta" >
+	<section id="cta" v-if="userStatus">
 		<div class="container background-register">
 			<div class="row" id="cta_details">
 				<div class="col-lg-6 ">
@@ -665,7 +661,7 @@
 					</div>
 				</div>
 				<div class="col-lg-6">
-					<a href="#"  class="btn start-tutor" value="">Register Now</a>
+					<router-link to="/login/signup" class="btn start-tutor" >Register Now</router-link>
 			</div>
 			</div>
 		</div>
@@ -686,8 +682,13 @@ export default {
     // HelloWorld
   },
   data(){
-    return{
-      menuValue:''
+    return{	
+		componentKey: 0,
+		menuValue:'',
+		categories:[],
+		courses:[],
+		categoryClicked:0,
+		userStatus:true
     }
   },
   methods: {
@@ -699,7 +700,48 @@ export default {
     {
       document.getElementById('navPill').scrollLeft -= 40;
     },
+	displayCourses:function(category,index)
+	{
+		this.categoryClicked=index
+		window.axios.get("https://still-sands-03593.herokuapp.com/api/school/"+category+"/courses")
+		.then(response=>
+		{
+			console.log(response.data.results)
+			this.courses = response.data.results
+		})
+	}
     
+  },
+  beforeRouteEnter(to, from, next) {
+        next((vm) => {
+            console.log(vm)
+            if(from.path=="/login/login" || from.path=="/login/signup")
+			{
+				console.log(from)
+				// console.log($router)
+				console.log(vm.$router)
+				vm.$router.go()
+			}
+        });
+    },
+  created: function(){
+		if(localStorage.getItem('userdetails'))
+		{
+			this.userStatus=false
+		}
+      window.axios.get("https://still-sands-03593.herokuapp.com/api/school/categories/")
+      .then(response=>
+      {
+        console.log(response.data)
+        this.categories = response.data
+		window.axios.get("https://still-sands-03593.herokuapp.com/api/school/"+this.categories[0].slug+"/courses")
+		.then(response=>
+		{
+			console.log(response.data.results)
+			this.courses = response.data.results
+		})
+      })
+	
   },
 }
 </script>

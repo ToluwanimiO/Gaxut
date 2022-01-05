@@ -1,10 +1,19 @@
 <template>
-    <div class="login-body">
+    <div class="login-body ">
+        <div id="app-container" class="header_load">
+            <loading-bar
+            :on-error-done="errorDone"
+            :on-progress-done="progressDone"
+            :progress="progress"
+            :direction="direction"
+            :error="errorBar" >
+            </loading-bar>            
+        </div>
         <section class="signUp" style="margin-top: 70px;">
         <div class="container-fluid" >
             <div class="row p-0 justify-content-center" >
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                    <div class="contianer-fluid">
+                    <div class="container-fluid">
                         <div class="container p-0 border rounded-lg shadow-sm bg-white">
                             <!-- Nav tabs -->
                             <ul class="nav nav-pills nav-justified" role="pill">
@@ -30,7 +39,7 @@
                                            <a class="mr-3" href=""><span class="fab fa-apple"></span></a>
                                            <a class="mr-3" href=""><span class="fab fa-google"></span></a>
                                        </div>
-                                       <p class="text-secondary text-center mb-3">Or connect with your email</p>
+                                       <p class="text-secondary text-center mb-3" @click="progressTo">Or connect with your email</p>
                                        <form @submit.prevent="logIn" class="p-md-3" action="">
                                             <div class="form-group mb-4">
                                                 <label for="email">Email</label>
@@ -115,15 +124,28 @@
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
+// import HelloWorld from './components/HelloWorld.vue
+import Vue from 'vue'
+import LoadingBar from 'vue2-loading-bar'
+import 'vue2-loading-bar/src/css/loading-bar.css'
+import 'vue2-loading-bar/src/css/app.css'
+import 'vue2-loading-bar/src/js/vue.js'
+import 'vue2-loading-bar/build/vue2-loading-bar.min.js'
+Vue.config.debug = true
+    Vue.config.devtools = true
 
 export default {
+    
   name: 'Login',
-  components: {
+  components: { 
     // HelloWorld
+    LoadingBar
   },
   data(){
     return{
+        progress: 0,
+        errorBar: false,
+        direction: 'right',
         error:{
             username:null,
             first_name:null,
@@ -155,10 +177,52 @@ export default {
       if (this.$route.params.action == "signup")
       {
            this.$refs.signItem.click()
-      }
+      }      
   },
   methods: {
+     progressTo: function (val) {
+          this.progress = val;
+        },
+
+        setToError: function (bol) {
+          this.errorBar = bol;
+        },
+
+        changeDirection: function () {
+          if(this.progress >= 0){
+            this.progress = 100;
+          }
+          this.direction = this.direction === 'right' ? 'left' : 'right';
+        },
+
+        // Callback
+        errorDone(){
+          this.errorBar = false
+        },
+
+        progressDone() {
+          this.progress = 0
+        },
+        loadingProgress:function(){
+            var me = this;
+            me.progress = 10;
+            for (var i = 0; i < 30; i++) {
+            if(i > 20 && i < 29){
+                setTimeout(function () {
+                me.progress += 30;
+                },50*i);
+            }else{
+                setTimeout(function () {
+                me.progress +=5;
+                },10*i);
+            }
+            }
+            setTimeout(function () {
+            me.progress = 100;
+            },1500);
+        },
     signUp: function(e){
+        const myInterval = setInterval(this.loadingProgress, 500);
         //validation
         // var fields = ['username','first_name','last_name','email','password','password2']
         // var i;
@@ -194,28 +258,47 @@ export default {
         console.log('sign')
         window.axios.post('https://still-sands-03593.herokuapp.com/api/user/register/', this.user)
         .then(response =>{ 
+            clearInterval(myInterval);
             if(response.status == 201){
                 this.data_response.truth = false
                 this.data_response.value = "User registered"
                 this.data_response.success = false
+                window. scrollTo(0,0)
                 this.$refs.loginItem.click()
             }
         })
         .catch(err=>{
-            console.log(err.response)
-            if(err.response.status != 201){
-                this.data_response.truth = false
+            clearInterval(myInterval);   
+            this.progressDone    
+            this.progressTo(0)
+            this.setToError(true)
+            window. scrollTo(0,0)
+            console.log(err,'ghj')
+            if(err.response){
+                if(err.response.status != 201){
+                    this.data_response.truth = false
 
-                var key = Object.keys(err.response.data)[0]
-                console.log(key);          
-                if (err.response.data[key][0] == 'This field must be unique.') 
-                {                    
-                    this.data_response.value =key+": "+ err.response.data[key][0]
-                }   
-                else{
-                    this.data_response.value = err.response.data[key][0]
+                    var key = Object.keys(err.response.data)[0]
+                    if(key)
+                    {
+                        console.log(key);          
+                        if (err.response.data[key][0] == 'This field must be unique.') 
+                        {                    
+                            this.data_response.value =key+": "+ err.response.data[key][0]
+                        }   
+                        else{
+                            this.data_response.value = err.response.data[key][0]
+                        }
+                        console.log(this.data_response.value);
+                        this.data_response.success = true
+                    }               
+                
                 }
-                console.log(this.data_response.value);
+            }
+            else
+            {
+                this.data_response.truth = false
+                this.data_response.value = "Something went wrong"
                 this.data_response.success = true
             }
         });
@@ -230,10 +313,20 @@ export default {
             }
         })
         .catch(err=>{
-            console.log(err.response.data.username[0])
-            this.data_response.truth = false            
-            this.data_response.value = err.response.data.username[0]
-            this.data_response.success = true
+            window. scrollTo(0,0)
+            if(err.response){               
+                console.log(err.response.data)
+                this.data_response.truth = false            
+                this.data_response.value = err.response.data.error_message
+                this.data_response.success = true
+            }
+            else
+            {
+                this.data_response.truth = false
+                this.data_response.value = "Something went wrong"
+                this.data_response.success = true
+            }
+            
         });
     }
 
@@ -262,4 +355,5 @@ export default {
         background-size: contain;
     }
 }
+
 </style>

@@ -122,14 +122,14 @@
                         <div class="col-md-6 col-xl-4 p-2 p-xl-4"  v-for="(item,index) in jobs" :key="index">
                             <div class="card border border-0 shadow p-2">
                                 <div class="d-flex justify-content-end p-2">
-                                    <a class="category-pill-square rounded px-5 py-1" style="background-color: #f1f5ec; color: #000000;">DESIGN</a>
+                                    <a class="category-pill-square rounded px-5 py-1 bg-success text-white" v-bind:class="{'bg-danger':item.job_status=='closed'}" style="background-color: #f1f5ec; color: #000000;">{{item.job_status}}</a>
                                 </div>
                                 <div class="card-body">
                                     <h4 class="card-title">{{item.job_title}}</h4>
                                     <p class=" mb-2">{{item.job_description}}</p>
-                                    <small class="posted-by">Posted by: Thompson Ebiaku</small>
+                                    <small class="posted-by">Posted by: {{item.employer}}</small>
                                     <div class="d-flex my-3">
-                                        <span><i class="far fa-clock"></i> 2 days ago</span>
+                                        <span><i class="far fa-clock"></i> {{item.date_posted | truncate(10)}}</span>
                                         <span class="mx-4"><i class="far fa-user"></i> 24 Applicants</span>
                                     </div>        
                                     <h4 class="price">${{item.minimum_amount}} - ${{item.maximum_amount}}</h4>
@@ -251,7 +251,7 @@
             </div>
         </div>
     </section>
-    <section id="cta" class="mt-3">
+    <section id="cta" class="mt-3" v-if="userStatus">
 		<div class="container background-register">
 			<div class="row" id="cta_details">
 				<div class="col-lg-6 ">
@@ -260,7 +260,7 @@
 					</div>
 				</div>
 				<div class="col-lg-6">
-					<a href="#"  class="btn start-tutor" value="">Register Now</a>
+					<router-link to="/login/signup"  class="btn start-tutor" value="">Register Now</router-link>
 			</div>
 			</div>
 		</div>
@@ -279,20 +279,33 @@ export default {
   },
   data(){
     return{
-        jobs:[]
+        jobs:[],
+        userStatus:true
     }
   },
   methods: {
     
   },
   created: function(){
+      if(localStorage.getItem('userdetails'))
+	{
+		this.userStatus=false
+		this.userFirstName=JSON.parse(localStorage.getItem('userdetails')).first_name
+	}
       window.axios.get("http://still-sands-03593.herokuapp.com/api/job")
       .then(response=>
       {
         console.log(response.data.results)
         this.jobs = response.data.results
       })
-  }
+  },
+    filters: {
+        truncate: function(data,num){
+            const reqdString = 
+              data.split("").slice(0, num).join("");
+            return reqdString;
+        }
+    }
 }
 </script>
 

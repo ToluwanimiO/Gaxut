@@ -10,7 +10,7 @@
                         <h5>Our Blog</h5><br>
                         <p>
                             Articles you'll love
-                            <router-link to="/post-blog" class="btn btn-sm btn-secondary  mr-5 text-white">
+                            <router-link to="/post-blog" class="btn btn-sm btn-secondary  mr-5 text-white"  v-if="!userStatus">
                                 Post Blog
                                 <i class="fa fa-edit " ></i>
                             </router-link>
@@ -88,7 +88,7 @@
                     
                 </div>
             </section>
-            <section id="cta" class="mt-3">
+            <section id="cta" class="mt-3" v-if="userStatus">
                 <div class="container background-register">
                     <div class="row" id="cta_details">
                         <div class="col-lg-6 ">
@@ -97,7 +97,7 @@
                             </div>
                         </div>
                         <div class="col-lg-6">
-                            <a href="#"  class="btn start-tutor" value="">Register Now</a>
+                            <router-link to="/login/signup"  class="btn start-tutor" value="">Register Now</router-link>
                     </div>
                     </div>
                 </div>
@@ -117,7 +117,8 @@ export default {
     },
     data(){
         return{
-            posts:JSON.parse(localStorage.getItem("posts"))
+            posts:JSON.parse(localStorage.getItem("posts")),
+            userStatus:true
         }
     },
     methods: {
@@ -130,6 +131,11 @@ export default {
         }
     },
     created: function(){
+        if(localStorage.getItem('userdetails'))
+	{
+		this.userStatus=false
+		this.userFirstName=JSON.parse(localStorage.getItem('userdetails')).first_name
+	}
         window.axios.get("https://still-sands-03593.herokuapp.com/api/blog/")
         .then(response=>
         {
