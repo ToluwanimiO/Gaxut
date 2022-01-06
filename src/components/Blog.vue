@@ -130,6 +130,18 @@ export default {
             this.posts = JSON.parse(localStorage.getItem("posts"))
         }
     },
+     beforeRouteEnter(to, from, next) {
+        next((vm) => {
+            console.log(vm)
+            if(from.path=="/post-blog")
+			{
+				console.log(from)
+				// console.log($router)
+				console.log(vm.$router)
+				vm.$router.go()
+			}
+        });
+    },
     created: function(){
         if(localStorage.getItem('userdetails'))
 	{

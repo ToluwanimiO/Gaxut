@@ -324,10 +324,10 @@
 			</div> -->
 			<h1 style="margin-top:-70px">Our Course Categories</h1>
 		<div id="accordion">
-			<div v-for="(item,index) in categories" :key="index"> 
+			<div v-for="(item,index) in categories" :key="index" > 
 				<button @click="displayCourses(item.slug,index)" style="color:black"  class="accordion-link btn-secondary" data-toggle="collapse" :data-target="`#firstCategory`+index" >{{item.name}}</button>
 				<div :id="`firstCategory`+index" class="collapse accordionPanel" data-parent="#accordion">
-					<div class="card" v-for="(item,index) in courses" :key="index">
+					<div class="card" v-for="(item,index) in courses" :key="index" style="margin-bottom:20px">
 						<img class="card-img-top" src="./assets/images/social media.jpg" alt="Card image">
 						<div class="card-body">
 							<a class="category-pill-round text-dark" style="background-color: #f2cb054b;">{{item.description}}</a>

@@ -10,20 +10,22 @@
                         <div class=" col"><p class="text-muted"><i class="fa fa-hourglass-start"></i> 3 Mins Read</p></div>
                     </div>
                     </div>
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col-lg-12">
                             <div class="card blog_details">
                                 <img src="../assets/images/photoshop.jpg" alt="" class="card-img-top">
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
-                    <div class="mt-5">
-                        <p class="text-left">
-                            {{postDetail.content}}
-                        </p>
-                        <div class="title">
-                            <h5 class="mb-3">Share:</h5>
+                    <div >
+                        <div v-html="postDetail.content" class="contentBlog" style="margin-bottom:30px; margin-top:-30px">
+                            ggg
+                            <!-- {{postDetail.content}} -->
+                            <!-- <div id="preview" class="content ql-editor"></div> -->
+                        </div>
+                        <div class="title mt-5">
+                            <h5 class="mb-3 mt-5">Share:</h5>
                             <div class="row" id="share_icons">
                                 <div class="col-1"><a href=""><i class="fab fa-whatsapp"></i></a></div>
                                 <div class="col-1"><a href=""><i class="fab fa-facebook"></i></a></div>
@@ -91,8 +93,10 @@
                             <div class="card blog_details mb-3">
                                 <img src="../assets/images/photoshop.jpg" alt="" class="card-img-top">
                                 <div class="card-body">
-                                    <a href=""><h5 class="card-title">{{item.title}}</h5></a>
-                                    <p class="text-muted">{{item.date_updated | truncate(10)}}</p>
+                                    <router-link :to="{ name: 'BlogDetail', params: { blogId: item.slug }}">
+                                        <h5 class="card-title">{{item.title}}</h5>
+                                        <p class="text-muted">{{item.date_updated | truncate(10)}}</p>
+                                    </router-link>
                                 </div>
                             </div>
                         </div>
@@ -181,9 +185,7 @@ export default {
         //   console.log(response)
         
           this.postDetail.author=response.data.author          
-          var content=response.data.content
-          var doc = new DOMParser().parseFromString(content, "text/xml");
-          this.postDetail.content=doc.firstChild.innerHTML
+          this.postDetail.content=response.data.content
           this.postDetail.date_updated=response.data.date_updated
           this.postDetail.title=response.data.title
 
@@ -373,5 +375,13 @@ export default {
     .write-comments :-moz-placeholder {
     /* Firefox 18- */
     color: #9f9f9f;
+    }
+    .contentBlog p
+    {
+        margin-bottom: 0px  ;
+    }
+     .contentBlog h1
+    {
+        margin-top: 0px  ;
     }
 </style>

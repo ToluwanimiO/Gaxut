@@ -292,7 +292,7 @@ export default {
 		this.userStatus=false
 		this.userFirstName=JSON.parse(localStorage.getItem('userdetails')).first_name
 	}
-      window.axios.get("http://still-sands-03593.herokuapp.com/api/job")
+      window.axios.get("https://still-sands-03593.herokuapp.com/api/job")
       .then(response=>
       {
         console.log(response.data.results)

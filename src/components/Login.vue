@@ -206,20 +206,20 @@ export default {
         loadingProgress:function(){
             var me = this;
             me.progress = 10;
-            for (var i = 0; i < 30; i++) {
+            for (var i = 0; i < 5; i++) {
             if(i > 20 && i < 29){
                 setTimeout(function () {
                 me.progress += 30;
-                },50*i);
+                },5*i);
             }else{
                 setTimeout(function () {
                 me.progress +=5;
-                },10*i);
+                },1*i);
             }
             }
             setTimeout(function () {
             me.progress = 100;
-            },1500);
+            },1);
         },
     signUp: function(e){
         const myInterval = setInterval(this.loadingProgress, 500);
@@ -269,8 +269,7 @@ export default {
         })
         .catch(err=>{
             clearInterval(myInterval);   
-            this.progressDone    
-            this.progressTo(0)
+            this.progressDone  
             this.setToError(true)
             window. scrollTo(0,0)
             console.log(err,'ghj')
@@ -304,15 +303,20 @@ export default {
         });
     },
     logIn: function(){
+        const myInterval = setInterval(this.loadingProgress, 500);
         console.log('log')
         window.axios.post('https://still-sands-03593.herokuapp.com/api/user/login/', this.logUser)
         .then(response =>{ 
+            clearInterval(myInterval); 
             if(response.status == 200){
                 localStorage.setItem("userdetails",JSON.stringify(response.data))
                 this.$router.push({ path: '/' })
             }
         })
         .catch(err=>{
+            clearInterval(myInterval);   
+            this.progressDone    
+            this.setToError(true)
             window. scrollTo(0,0)
             if(err.response){               
                 console.log(err.response.data)

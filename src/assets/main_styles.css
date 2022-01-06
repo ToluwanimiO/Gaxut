@@ -64,7 +64,7 @@ body
 	font-size: 14px;
 	font-weight: 400;
 	background: #FFFFFF;
-	color: #a5a5a5;
+	/* color: #a5a5a5; */
 }
 div
 {
@@ -1502,7 +1502,7 @@ input:last-of-type
 	background-repeat: no-repeat;
 	background-position: top right;
 }
-#privacy, .container .title h5{
+#privacy .container .title h5{
 	font-size: 30px;
 	font-weight: 600;
 	color: #001F7D;
