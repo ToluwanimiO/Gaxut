@@ -29,9 +29,9 @@
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="user-details">
-                                                <p><strong>Name:</strong>  Ezekiel Adamu</p>
-                                                <p><strong>Username:</strong>  Ezee</p>
-                                                <p><strong>Email:</strong> ezekialayz@gmail.com</p>
+                                                <p><strong>Name:</strong>  {{user.first_name}} {{user.last_name}}</p>
+                                                <!-- <p><strong>Username:</strong>  Ezee</p> -->
+                                                <p><strong>Email:</strong> {{user.email}}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -813,21 +813,35 @@ export default {
   },
   data(){
     return{
+        user:'',
+        token:'',
         job:{
             job_title:'',
             job_description:'', 	
-            job_category:'',	
+            job_category:'2',	
             minimum_amount:'',	
             maximum_amount:'',
+            job_status:'open',
+            employer:'1'
         }
     }
   },
   methods: {
     submitJob: function(){
-        window.axios.post('https://still-sands-03593.herokuapp.com/api/job', this.job)
+        window.axios.post('https://still-sands-03593.herokuapp.com/api/job/create', this.job,
+        {
+            headers: {
+                Authorization: 'Token  ' + this.token
+            }
+        })
         .then(response => console.log(response));
     }
   },
+  created:function()
+  {
+      this.user =JSON.parse(localStorage.getItem('userdetails'))
+      this.token = JSON.parse(localStorage.getItem("userdetails")).token
+  }
 }
 </script>
 

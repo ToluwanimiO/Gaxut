@@ -47,7 +47,11 @@
 							<template v-if="$route.name!='Login'">
 								<li class="main_nav_item"><a href="#"><img src="./assets/images/Rectangle 8.png" alt=""></a></li>
 								<router-link to="/login/login" class="main_nav_item" v-if="userStatus">Login</router-link>
-								<a v-if="!userStatus" style="color:#ffb606">Welcome {{userFirstName}}!</a>
+								<router-link to="/dashboard">
+									<a v-if="!userStatus" style="color:#ffb606">
+										Welcome {{userFirstName}}!
+									</a>
+								</router-link>
 								<router-link to="/login/signup"><a style="background: #FBF09E; color:#F4D634; border-radius: 9px; padding: 5px 20px 5px 20px;" class="btn btn-md btn-warning" v-if="userStatus"> Signup </a></router-link>
 							</template>
 						</ul>
@@ -109,7 +113,7 @@
 			<div class="menu menu_mm">
 				<ul class="menu_list menu_mm">
 					<li class="menu_item menu_mm mb-3"><a href="#"><img src="./assets/images/logo.png" alt="" style="width: 120px;"></a></li>
-					<li class=" mb-3" style="color:#ecdc18" v-if="!userStatus"><a>Welcome {{userFirstName}}!</a></li> 
+					<router-link to="/dashboard"><li class=" mb-3" @click="closeMenu" style="color:#ecdc18" v-if="!userStatus"><a>Welcome {{userFirstName}}!</a></li></router-link>
 					<router-link to="/"><li class="menu_item menu_mm mb-3" @click="closeMenu">Home</li></router-link>
 					<router-link to="/courses"><li class="menu_item menu_mm mb-3" @click="closeMenu">Categories</li></router-link>
 					<router-link to="/jobs"><li class="menu_item menu_mm mb-3" @click="closeMenu">Jobs</li></router-link>
@@ -261,6 +265,13 @@ export default {
     },
     
   },
+  filters: {
+        truncate: function(data,num){
+            const reqdString = 
+              data.split("").slice(0, num).join("");
+            return reqdString;
+        }
+    }
 }
 </script>
 

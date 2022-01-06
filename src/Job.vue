@@ -127,7 +127,7 @@
                                 <div class="card-body">
                                     <h4 class="card-title">{{item.job_title}}</h4>
                                     <p class=" mb-2">{{item.job_description}}</p>
-                                    <small class="posted-by">Posted by: {{item.employer}}</small>
+                                    <small class="posted-by">Posted by: {{item.created_by}}</small>
                                     <div class="d-flex my-3">
                                         <span><i class="far fa-clock"></i> {{item.date_posted | truncate(10)}}</span>
                                         <span class="mx-4"><i class="far fa-user"></i> 24 Applicants</span>
