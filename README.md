@@ -1,4 +1,7 @@
-# gaxut
+# Gaxut
+```
+Gaxut is an e-learning and freelancing platform that's on a mission to educate minds, develop a skillful society, while you to make money in the process.
+```
 
 ## Project setup
 ```
