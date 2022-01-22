@@ -225,7 +225,6 @@
 
 <script>
 // import Home from "./Home.vue"
-
 export default {
   name: 'App',
   components: {
@@ -237,22 +236,36 @@ export default {
 		menuValue:'',
 		userStatus:true,
 		userFirstName:'',
-		categories:[]
+		// categories:this.$store.state.categories
     }
   },
+  computed: {
+		categories () {
+			return this.$store.state.categories;
+		}      
+	},
   created: function(){ 
+	console.log(this.$store,'')
     this.date = new Date().getFullYear()
 	if(localStorage.getItem('userdetails'))
 	{
 		this.userStatus=false
 		this.userFirstName=JSON.parse(localStorage.getItem('userdetails')).first_name
 	}
-	window.axios.get("https://still-sands-03593.herokuapp.com/api/school/categories/")
-      .then(response=>
-      {
-        console.log(response.data)
-        this.categories = response.data
-      })
+	else{
+		if(this.$store.state.called.category)
+		{
+			// window.axios.get("https://still-sands-03593.herokuapp.com/api/school/categories/")
+			// .then(response=>
+			// {
+			// 	console.log(response.data)
+			// 	this.categories = response.data
+			// })
+			this.$store.dispatch('GET_CATEGORIES').then(() => {
+			// ...
+			})
+		}
+	}
   },
   methods: {
     closeMenu: function()

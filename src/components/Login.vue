@@ -18,10 +18,10 @@
                             <!-- Nav tabs -->
                             <ul class="nav nav-pills nav-justified" role="pill">
                                 <li class="nav-item">
-                                    <a ref="loginItem" class="nav-link py-3 rounded-0 active text-dark" data-toggle="pill" href="#login">Log in</a>
+                                    <a ref="loginItem" class="nav-link py-3 rounded-0 active text-dark" data-toggle="pill" @click="logDisplay" href="#login">Log in</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a ref="signItem" class="nav-link py-3 rounded-0 text-dark" data-toggle="pill" href="#signup">Sign up</a>
+                                    <a ref="signItem" class="nav-link py-3 rounded-0 text-dark" data-toggle="pill" @click="logDisplay" href="#signup">Sign up</a>
                                 </li>
                             </ul>
                         
@@ -143,6 +143,7 @@ export default {
   },
   data(){
     return{
+        signedUp:false,
         progress: 0,
         errorBar: false,
         direction: 'right',
@@ -210,19 +211,30 @@ export default {
             if(i > 20 && i < 29){
                 setTimeout(function () {
                 me.progress += 30;
-                },5*i);
+                },50);
             }else{
                 setTimeout(function () {
                 me.progress +=5;
-                },1*i);
+                },50);
             }
             }
             setTimeout(function () {
             me.progress = 100;
             },1);
         },
+        logDisplay:function()
+        {
+            if(!(this.signedUp)){
+                this.data_response.truth = true
+                this.data_response.value = ""
+                this.data_response.success = false
+            }else{
+                this.signedUp = false
+            }
+            
+        },
     signUp: function(e){
-        const myInterval = setInterval(this.loadingProgress, 500);
+        const myInterval = setInterval(this.loadingProgress, 200);
         //validation
         // var fields = ['username','first_name','last_name','email','password','password2']
         // var i;
@@ -263,6 +275,7 @@ export default {
                 this.data_response.truth = false
                 this.data_response.value = "User registered"
                 this.data_response.success = false
+                this.signedUp = true
                 window. scrollTo(0,0)
                 this.$refs.loginItem.click()
             }

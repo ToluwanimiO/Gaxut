@@ -1,4 +1,6 @@
 import Vue from 'vue'
+import Vuex from 'vuex'
+import store from './store/store.js'; 
 import App from './App.vue'
 import './assets/main_styles.css';
 import './assets/responsive.css';
@@ -17,12 +19,13 @@ import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
  
-Vue.use(VueQuillEditor, /* { default global options } */)
+Vue.use(VueQuillEditor, Vuex/* { default global options } */)
 // import './assets/js/custom';
 
 Vue.config.productionTip = false
 window.axios = axios
 new Vue({
   router,
+  store,
   render: h => h(App),
 }).$mount('#app')

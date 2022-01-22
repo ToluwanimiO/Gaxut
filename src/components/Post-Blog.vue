@@ -63,7 +63,7 @@ export default {
                 this.data_response.truth = false
                 this.data_response.value = "Post succesfully created"
                 this.data_response.success = false
-                this.$router.push({path:"/blog"})
+                this.$router.push({path:"/blog"})                
             }
             else
             {

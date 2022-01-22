@@ -8,7 +8,7 @@
                             <p>"In today's environment, hoarding knowledge ultimately erodes your power. If you
                                 know something very important, the way to get power is by actually sharing it.” <br>
                                 - Joseph Badaracco</p>
-                                <a href="#"  class="btn start-tutor mb-5" value="Submit">Start Teaching Today</a>
+                                <router-link  class="btn start-tutor mb-5" to="/beatutor">Start Teaching Today</router-link>
                         </div>
                         <!-- I have changed the class in the image tag this is because the image is meant to only show on the desktop view and not the mobile view -->
                         <div class="col-lg-6">

@@ -1,8 +1,18 @@
 <template>
    <div>
-        <section id="user-dashboard">
-            <div class="container">
-                <h5 class="title mt-3">My Dashboard</h5>
+       
+        <section id="user-dashboard" >
+            <div class="container text-center" v-if="!user">
+                <h5 class=" mt-3 p-2" >Log in to view dashboard</h5>
+                <button class="p-2 pl-4 pr-4 btn btn-lg btn-outline-warning hoverEffect" style="height:fit-content">Log in</button>
+            </div>
+            <div class="container" v-if="user">
+                <div class="d-flex">
+                    <h5 class="title mt-3 p-2">My Dashboard</h5>
+                    <span class="ml-auto p-2 btn btn-outline-warning hoverEffect" @click="logOut" style="height:fit-content">Log out</span>
+                
+                </div>
+                
                 <div class="row">
                     <div class="col-lg-3 bord">
                         <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -786,7 +796,7 @@
             </div>
         </section>
 
-    <section class="pt-5" id="batutor">
+    <section class="pt-5" id="batutor" v-if="user">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
@@ -835,6 +845,11 @@ export default {
             }
         })
         .then(response => console.log(response));
+    },
+    logOut:function(){
+        localStorage.removeItem('userdetails')
+        this.$store.commit('LOGOUT')
+        this.$router.push({path:"/"})
     }
   },
   created:function()

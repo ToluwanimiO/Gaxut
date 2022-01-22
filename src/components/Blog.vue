@@ -15,7 +15,9 @@
                                 <i class="fa fa-edit " ></i>
                             </router-link>
                         </p>
-                        
+                        <div v-if="!posts.length">
+                            There are no posts at the moment, be the first person to post a blog
+                        </div>
                         
                     </div>
                     <div class="row">
@@ -117,17 +119,18 @@ export default {
     },
     data(){
         return{
-            posts:JSON.parse(localStorage.getItem("posts")),
+            // posts:JSON.parse(localStorage.getItem("posts")),
             userStatus:true
         }
     },
     methods: {
         
     },
-    watch:{
+    computed:{
         posts: function()
         {
-            this.posts = JSON.parse(localStorage.getItem("posts"))
+            console.log(JSON.parse(localStorage.getItem("posts")))
+            return JSON.parse(localStorage.getItem("posts"))
         }
     },
      beforeRouteEnter(to, from, next) {
@@ -144,17 +147,17 @@ export default {
     },
     created: function(){
         if(localStorage.getItem('userdetails'))
-	{
-		this.userStatus=false
-		this.userFirstName=JSON.parse(localStorage.getItem('userdetails')).first_name
-	}
-        window.axios.get("https://still-sands-03593.herokuapp.com/api/blog/")
-        .then(response=>
         {
-            console.log("my response is..",response)
-            localStorage.setItem("posts",JSON.stringify(response.data.results))
-        })
-        .catch(error=>console.log("my error is ...",error))
+            this.userStatus=false
+            this.userFirstName=JSON.parse(localStorage.getItem('userdetails')).first_name
+        }
+            window.axios.get("https://still-sands-03593.herokuapp.com/api/blog/")
+            .then(response=>
+            {
+                console.log("my response is..",response)
+                localStorage.setItem("posts",JSON.stringify(response.data.results))
+            })
+            .catch(error=>console.log("my error is ...",error))
     },
     filters: {
         truncate: function(data,num){

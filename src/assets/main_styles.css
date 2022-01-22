@@ -2204,7 +2204,10 @@ a.view-all:hover {
 #user-dashboard .breadcrumb li{
 	font-size: 19px;
 }
-
+.hoverEffect:hover
+{
+	color:white
+}
 /*********************************
 15. Footer
 *********************************/

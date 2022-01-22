@@ -166,7 +166,10 @@
 				
 
 			</div>
-			<a style="color: #F2CB05;" class="btn view-all">View All</a>
+			<span v-if="categories.length">
+			<a style="color: #F2CB05;" class="btn view-all" v-if="coursesStatus">View All</a>
+			<a style="color: #F2CB05; cursor:auto" class="btn view-all" v-if="!coursesStatus">No course in this category</a>
+			</span>
 		</div>
 
 		<div class="course-category-mobile mt-5" id="category">
@@ -398,7 +401,8 @@
 						</div>
 					</div> -->
 					
-					<a style="color: #F2CB05;" class="btn view-all">View All</a>
+					<a style="color: #F2CB05;" class="btn view-all" v-if="coursesStatus">View All</a>
+					<a style="color: #F2CB05; cursor:auto" class="btn view-all" v-if="!coursesStatus">No course in this category</a>
 
 				</div>
 			</div>
@@ -638,7 +642,7 @@
 			
 		</div>
 
-		<div class="jobs">
+		<div class="jobs mt-5">
 			<div class="job-text">
 				<h1>Get Amazing Jobs With Amazing Offers</h1>
 				<p>Jobs are uploaded daily on different categories; graphic design, programming, data science, crytocurrency and more.</p>
@@ -685,10 +689,11 @@ export default {
     return{	
 		componentKey: 0,
 		menuValue:'',
-		categories:[],
+		// categories:this.$store.state.categories,
 		courses:[],
 		categoryClicked:0,
-		userStatus:true
+		userStatus:true,
+		coursesStatus:this.$store.state.categories.length
     }
   },
   methods: {
@@ -708,6 +713,7 @@ export default {
 		{
 			console.log(response.data.results)
 			this.courses = response.data.results
+			this.coursesStatus = this.courses.length
 		})
 	}
     
@@ -722,27 +728,52 @@ export default {
 				console.log(vm.$router)
 				vm.$router.go()
 			}
+			else if(from.path=="/dashboard" && vm.$store.state.log=="out")
+			{
+				vm.$router.go()
+				alert("Log out succesful")
+			}
         });
     },
   created: function(){
+		console.log(this.categories)
+		if(this.categories.length)
+		{
+			console.log('tolu')
+		}
 		if(localStorage.getItem('userdetails'))
 		{
 			this.userStatus=false
 		}
-      window.axios.get("https://still-sands-03593.herokuapp.com/api/school/categories/")
-      .then(response=>
-      {
-        console.log(response.data)
-        this.categories = response.data
-		window.axios.get("https://still-sands-03593.herokuapp.com/api/school/"+this.categories[0].slug+"/courses")
-		.then(response=>
-		{
-			console.log(response.data.results)
-			this.courses = response.data.results
+    //   window.axios.get("https://still-sands-03593.herokuapp.com/api/school/categories/")
+    //   .then(response=>
+    //   {
+    //     console.log(response.data)
+    //     this.categories = response.data
+	// 	window.axios.get("https://still-sands-03593.herokuapp.com/api/school/"+this.categories[0].slug+"/courses")
+	// 	.then(response=>
+	// 	{
+	// 		console.log(response.data.results)
+	// 		this.courses = response.data.results
+	// 		this.coursesStatus = this.courses.length
+	// 	})
+    //   })
+	if(this.$store.state.called.category || this.$store.state.called.course)
+	{
+		this.$store.dispatch('GET_CATEGORIES_LIST').then(() => {
+		// ...
 		})
-      })
+	}
+	else{
+		console.log(this.categories)
+	}
 	
   },
+  computed: {
+		categories () {
+			return this.$store.state.categories;
+		}      
+	},
 }
 </script>
 
