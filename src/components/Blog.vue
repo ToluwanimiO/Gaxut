@@ -35,6 +35,7 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <!-- <div class="col-lg-4">
                             <div class="card blog_details mb-3" style="height: 90%;">
                                 <img src="../assets/images/photoshop.jpg" alt="" class="card-img-top">
@@ -55,7 +56,7 @@
                             </div>
                         </div> -->
                     </div>
-
+                    <Pagination :total="total"  class="m-5" v-if="posts.length" v-on:page="viewPage"/>
                     <!-- <div class="row mt-5 mb-5">
                         <div class="col-lg-4">
                             <div class="card blog_details mb-3">
@@ -109,22 +110,26 @@
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
+import Pagination from './Pagination.vue'
 
 export default {
     
     name: 'Blog',
     components: {
-        // HelloWorld
+        Pagination
     },
     data(){
         return{
             // posts:JSON.parse(localStorage.getItem("posts")),
-            userStatus:true
+            userStatus:true,
+            total:1,
+            currentPage:1,
         }
     },
     methods: {
-        
+       viewPage (value) {
+        this.currentPage = value
+        } 
     },
     computed:{
         posts: function()
@@ -151,9 +156,10 @@ export default {
             this.userStatus=false
             this.userFirstName=JSON.parse(localStorage.getItem('userdetails')).first_name
         }
-            window.axios.get("https://still-sands-03593.herokuapp.com/api/blog/")
+            window.axios.get(`https://still-sands-03593.herokuapp.com/api/blog/?page=${this.currentPage}`)
             .then(response=>
             {
+                this.total = response.data.count
                 console.log("my response is..",response)
                 localStorage.setItem("posts",JSON.stringify(response.data.results))
             })
